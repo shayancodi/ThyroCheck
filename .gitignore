@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+.venv/
+
+# Raw NHANES data files
+*.xpt
+*.XPT
+
+# Research papers (copyright)
+Research Papers/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Node modules (for React Native later)
+node_modules/
+.expo/
+ThyroCheckDataSet/.~lock.*
