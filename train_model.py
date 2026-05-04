@@ -4,7 +4,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 from xgboost import XGBClassifier
-from imblearn.over_sampling import SMOTE
 import joblib
 import os
 
@@ -13,12 +12,13 @@ import os
 df = pd.read_csv("ThyroCheckDataSet/thyrocheck_dataset.csv")
 
 # Features (input) — 5 thyroid values
-FEATURES = ["TSH", "FT3", "FT4", "TT3", "TT4"]
+FEATURES = ["TSH", "FT3", "FT4", "TT3", "TT4", "Age", "Gender"]
 
 # Labels (output) — 3 diseases
 LABELS = ["Heart_Failure", "Coronary_Heart_Disease", "Stroke"]
 
-X = df[FEATURES]
+X = df[FEATURES].copy()
+X["Gender"] = X["Gender"].map({"Male": 0, "Female": 1})
 
 print(f"Total patients: {len(df)}")
 print(f"Features: {FEATURES}")
@@ -66,15 +66,13 @@ for label in LABELS:
     print(f"Train: {len(X_train)} | Test: {len(X_test)}")
     print(f"Positive cases in train: {y_train.sum()}")
 
-    # Balance training data with SMOTE
-    smote = SMOTE(random_state=42)
-    X_train_balanced, y_train_balanced = smote.fit_resample(X_train, y_train)
-    print(f"After SMOTE - Train size: {len(X_train_balanced)}")
-
     # Calculate weight ratio for XGBoost
+
     negative_count = (y_train == 0).sum()
     positive_count = (y_train == 1).sum()
     weight_ratio = negative_count / positive_count
+    print(f"Weight ratio: {weight_ratio:.2f}")
+
 
     # Train XGBoost model
     model = XGBClassifier(
@@ -85,7 +83,7 @@ for label in LABELS:
         eval_metric="logloss",
         random_state=42
     )
-    model.fit(X_train_balanced, y_train_balanced)
+    model.fit(X_train, y_train)
 
     # Save model
     model_path = f"ThyroCheckDataSet/models/{label}_model.pkl"
