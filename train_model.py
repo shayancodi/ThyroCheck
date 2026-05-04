@@ -99,3 +99,29 @@ for label in LABELS:
     print(f"ROC-AUC Score: {roc_auc_score(y_test, y_proba):.4f}")
     print(f"Confusion Matrix:")
     print(confusion_matrix(y_test, y_pred))
+
+# STEP 5: Test With Sample Patient
+
+print(f"\n{'='*50}")
+print("TESTING WITH SAMPLE PATIENT")
+print(f"{'='*50}")
+
+sample = pd.DataFrame([{
+    "TSH": 100.0,
+    "FT3": 2.1,
+    "FT4": 0.5,
+    "TT3": 85.0,
+    "TT4": 599.0,
+    "Age": 58,
+    "Gender": 1
+}])
+
+sample_scaled = scaler.transform(sample)
+
+print(f"\nPatient: Female, Age 58")
+print(f"Values: TSH=52, FT3=2.1, FT4=0.5, TT3=185, TT4=59")
+print(f"\nPredicted Risk:")
+for label in LABELS:
+    model = joblib.load(f"ThyroCheckDataSet/models/{label}_model.pkl")
+    risk = model.predict_proba(sample_scaled)[:, 1][0]
+    print(f"  {label}: {risk*100:.1f}%")
