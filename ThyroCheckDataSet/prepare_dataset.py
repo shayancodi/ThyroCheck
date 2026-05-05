@@ -45,7 +45,7 @@ DEMO_COLS = ["SEQN", "RIDAGEYR", "RIAGENDR"]
 # MCQ160B = Congestive Heart Failure (1=Yes, 2=No)
 # MCQ160C = Coronary Heart Disease  (1=Yes, 2=No)
 # MCQ160F = Stroke                  (1=Yes, 2=No)
-MCQ_COLS = ["SEQN", "MCQ160B", "MCQ160C", "MCQ160F"]
+MCQ_COLS = ["SEQN", "MCQ160B", "MCQ160C"]
 
 
 def load_xpt(filepath, columns):
@@ -114,8 +114,7 @@ df = df.rename(columns={
     "RIDAGEYR": "Age",
     "RIAGENDR": "Gender",
     "MCQ160B": "HeartFailure_Raw",
-    "MCQ160C": "CoronaryHeartDisease_Raw",
-    "MCQ160F": "Stroke_Raw",
+    "MCQ160C": "CoronaryHeartDisease_Raw"
 })
 
 # Convert Gender: 1=Male, 2=Female -> readable
@@ -140,14 +139,13 @@ def create_label(series):
 
 df["Heart_Failure"] = create_label(df["HeartFailure_Raw"])
 df["Coronary_Heart_Disease"] = create_label(df["CoronaryHeartDisease_Raw"])
-df["Stroke"] = create_label(df["Stroke_Raw"])
 
 # Drop raw columns
-df = df.drop(columns=["HeartFailure_Raw", "CoronaryHeartDisease_Raw", "Stroke_Raw"])
+df = df.drop(columns=["HeartFailure_Raw", "CoronaryHeartDisease_Raw"])
 
 print(f"Heart Failure - Yes: {df['Heart_Failure'].sum():.0f}, No: {(df['Heart_Failure']==0).sum()}")
 print(f"Coronary Heart Disease - Yes: {df['Coronary_Heart_Disease'].sum():.0f}, No: {(df['Coronary_Heart_Disease']==0).sum()}")
-print(f"Stroke - Yes: {df['Stroke'].sum():.0f}, No: {(df['Stroke']==0).sum()}")
+
 
 # ============================================================
 # STEP 4: Filter adults only (age >= 20)
@@ -169,7 +167,7 @@ print("STEP 5: Handling missing data")
 print("=" * 60)
 
 thyroid_features = ["TSH", "FT4", "FT3", "TT4", "TT3"]
-label_cols = ["Heart_Failure", "Coronary_Heart_Disease", "Stroke"]
+label_cols = ["Heart_Failure", "Coronary_Heart_Disease"]
 
 print(f"\nMissing values BEFORE cleaning:")
 for col in thyroid_features + label_cols:
@@ -189,7 +187,7 @@ print("STEP 6: Exporting final dataset")
 print("=" * 60)
 
 final_cols = ["SEQN", "Age", "Gender", "TSH", "FT3", "FT4", "TT3", "TT4",
-              "Heart_Failure", "Coronary_Heart_Disease", "Stroke", "Cycle"]
+              "Heart_Failure", "Coronary_Heart_Disease", "Cycle"]
 
 df = df[final_cols]
 
@@ -218,7 +216,6 @@ print(f"")
 print(f"Disease prevalence:")
 print(f"  Heart Failure:          {df['Heart_Failure'].sum()} ({df['Heart_Failure'].mean()*100:.1f}%)")
 print(f"  Coronary Heart Disease: {df['Coronary_Heart_Disease'].sum()} ({df['Coronary_Heart_Disease'].mean()*100:.1f}%)")
-print(f"  Stroke:                 {df['Stroke'].sum()} ({df['Stroke'].mean()*100:.1f}%)")
 print(f"")
 print(f"Thyroid value ranges:")
 for col in thyroid_features:
