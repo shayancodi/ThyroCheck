@@ -6,6 +6,7 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 from xgboost import XGBClassifier
 import joblib
 import os
+from sklearn.model_selection import GridSearchCV
 
 # STEP 1: Load Data
 
@@ -14,11 +15,16 @@ df = pd.read_csv("ThyroCheckDataSet/thyrocheck_dataset.csv")
 # Features (input) — 5 thyroid values
 FEATURES = ["TSH", "FT3", "FT4", "TT3", "TT4", "Age", "Gender"]
 
-# Labels (output) — 3 diseases
-LABELS = ["Heart_Failure", "Coronary_Heart_Disease", "Stroke"]
+# Labels (output) — 2 diseases
+LABELS = ["Heart_Failure", "Coronary_Heart_Disease"]
 
-X = df[FEATURES].copy()
+X = df[["TSH", "FT3", "FT4", "TT3", "TT4", "Age", "Gender"]].copy()
 X["Gender"] = X["Gender"].map({"Male": 0, "Female": 1})
+# Feature Engineering — help the model with medical ratios
+X["TSH_TT4_Ratio"] = X["TSH"] / (X["TT4"] + 0.01)
+X["FT3_FT4_Ratio"] = X["FT3"] / (X["FT4"] + 0.01)
+X["TSH_Squared"] = X["TSH"] ** 2
+FEATURES = list(X.columns)
 
 print(f"Total patients: {len(df)}")
 print(f"Features: {FEATURES}")
@@ -73,17 +79,27 @@ for label in LABELS:
     weight_ratio = negative_count / positive_count
     print(f"Weight ratio: {weight_ratio:.2f}")
 
+    # Train XGBoost with GridSearch
+    param_grid = {
+        "n_estimators": [100, 200, 300],
+        "max_depth": [3, 4, 5, 6],
+        "learning_rate": [0.01, 0.05, 0.1],
+    }
 
-    # Train XGBoost model
-    model = XGBClassifier(
-        n_estimators=100,
-        max_depth=4,
-        learning_rate=0.1,
+    xgb = XGBClassifier(
         scale_pos_weight=weight_ratio,
         eval_metric="logloss",
         random_state=42
     )
-    model.fit(X_train, y_train)
+
+    grid_search = GridSearchCV(
+        xgb, param_grid, cv=5, scoring="roc_auc", n_jobs=-1, verbose=1
+    )
+    grid_search.fit(X_train, y_train)
+
+    model = grid_search.best_estimator_
+    print(f"Best params: {grid_search.best_params_}")
+    print(f"Best CV ROC-AUC: {grid_search.best_score_:.4f}")
 
     # Save model
     model_path = f"ThyroCheckDataSet/models/{label}_model.pkl"
@@ -116,7 +132,11 @@ sample = pd.DataFrame([{
     "Gender": 1
 }])
 
+sample["TSH_TT4_Ratio"] = sample["TSH"] / (sample["TT4"] + 0.01)
+sample["FT3_FT4_Ratio"] = sample["FT3"] / (sample["FT4"] + 0.01)
+sample["TSH_Squared"] = sample["TSH"] ** 2
 sample_scaled = scaler.transform(sample)
+
 
 print(f"\nPatient: Female, Age 58")
 print(f"Values: TSH=52, FT3=2.1, FT4=0.5, TT3=185, TT4=59")
