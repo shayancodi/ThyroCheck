@@ -72,13 +72,6 @@ for label in LABELS:
     print(f"Train: {len(X_train)} | Test: {len(X_test)}")
     print(f"Positive cases in train: {y_train.sum()}")
 
-    # Calculate weight ratio for XGBoost
-
-    negative_count = (y_train == 0).sum()
-    positive_count = (y_train == 1).sum()
-    weight_ratio = negative_count / positive_count
-    print(f"Weight ratio: {weight_ratio:.2f}")
-
     # Train XGBoost with GridSearch
     param_grid = {
         "n_estimators": [100, 200, 300],
@@ -87,7 +80,7 @@ for label in LABELS:
     }
 
     xgb = XGBClassifier(
-        scale_pos_weight=weight_ratio,
+        scale_pos_weight=5,
         eval_metric="logloss",
         random_state=42
     )
@@ -116,32 +109,31 @@ for label in LABELS:
     print(f"Confusion Matrix:")
     print(confusion_matrix(y_test, y_pred))
 
-# STEP 5: Test With Sample Patient
+# STEP 5: Test With 5 Sample Patients
 
 print(f"\n{'='*50}")
-print("TESTING WITH SAMPLE PATIENT")
+print("TESTING WITH 5 SAMPLE PATIENTS")
 print(f"{'='*50}")
 
-sample = pd.DataFrame([{
-    "TSH": 100.0,
-    "FT3": 2.1,
-    "FT4": 0.5,
-    "TT3": 85.0,
-    "TT4": 599.0,
-    "Age": 58,
-    "Gender": 1
-}])
+patients = [
+    {"name": "1. Severe Hypo, 65F", "TSH": 15.0, "FT3": 1.8, "FT4": 0.4, "TT3": 70.0, "TT4": 4.0, "Age": 65, "Gender": 1},
+    {"name": "2. Healthy, 25M", "TSH": 2.0, "FT3": 3.1, "FT4": 0.8, "TT3": 110.0, "TT4": 8.0, "Age": 25, "Gender": 0},
+    {"name": "3. Mild Hypo, 50M", "TSH": 7.0, "FT3": 2.5, "FT4": 0.6, "TT3": 90.0, "TT4": 6.0, "Age": 50, "Gender": 0},
+    {"name": "4. Hyperthyroid, 55F", "TSH": 0.1, "FT3": 5.5, "FT4": 1.8, "TT3": 200.0, "TT4": 15.0, "Age": 55, "Gender": 1},
+    {"name": "5. Normal, 30F", "TSH": 2.5, "FT3": 3.0, "FT4": 0.8, "TT3": 115.0, "TT4": 8.0, "Age": 30, "Gender": 1},
+    {"name": "6. Extreme Hypo, 70M", "TSH": 50.0, "FT3": 1.0, "FT4": 0.2, "TT3": 40.0, "TT4": 2.0, "Age": 70, "Gender": 0},
+]
 
-sample["TSH_TT4_Ratio"] = sample["TSH"] / (sample["TT4"] + 0.01)
-sample["FT3_FT4_Ratio"] = sample["FT3"] / (sample["FT4"] + 0.01)
-sample["TSH_Squared"] = sample["TSH"] ** 2
-sample_scaled = scaler.transform(sample)
+for p in patients:
+    name = p.pop("name")
+    sample = pd.DataFrame([p])
+    sample["TSH_TT4_Ratio"] = sample["TSH"] / (sample["TT4"] + 0.01)
+    sample["FT3_FT4_Ratio"] = sample["FT3"] / (sample["FT4"] + 0.01)
+    sample["TSH_Squared"] = sample["TSH"] ** 2
+    sample_scaled = scaler.transform(sample)
 
-
-print(f"\nPatient: Female, Age 58")
-print(f"Values: TSH=52, FT3=2.1, FT4=0.5, TT3=185, TT4=59")
-print(f"\nPredicted Risk:")
-for label in LABELS:
-    model = joblib.load(f"ThyroCheckDataSet/models/{label}_model.pkl")
-    risk = model.predict_proba(sample_scaled)[:, 1][0]
-    print(f"  {label}: {risk*100:.1f}%")
+    print(f"\n  {name} (TSH={p['TSH']}, FT3={p['FT3']}, FT4={p['FT4']})")
+    for label in LABELS:
+        model = joblib.load(f"ThyroCheckDataSet/models/{label}_model.pkl")
+        risk = model.predict_proba(sample_scaled)[:, 1][0]
+        print(f"    {label}: {risk*100:.1f}%")
