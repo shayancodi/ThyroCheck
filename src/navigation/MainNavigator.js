@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LandingScreen, ReportScreen, ProfileScreen } from '../screens';
+import { LandingScreen, ReportScreen, ProfileScreen, InputScreen } from '../screens';
 import { Colors, Sizes } from '../constants';
 import { HomeIcon, ReportIcon, ProfileIcon } from '../components/TabIcons';
 
@@ -97,6 +97,7 @@ export const MainNavigator = () => {
       }}
     >
       <Stack.Screen name="MainTabs" component={MainTabs} />
+      <Stack.Screen name="Input" component={InputScreen} />
     </Stack.Navigator>
   );
 };

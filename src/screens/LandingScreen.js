@@ -33,7 +33,7 @@ export const LandingScreen = ({ navigation }) => {
   }, []);
 
   const handleUpload = () => {
-    navigation.navigate('Report');
+    navigation.navigate('Input');
   };
 
   return (

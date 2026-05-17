@@ -9,4 +9,4 @@ export { ForgotPasswordScreen } from './ForgotPasswordScreen';
 export { LandingScreen } from './LandingScreen';
 export { ReportScreen } from './ReportScreen';
 export { ProfileScreen } from './ProfileScreen';
-
+export { InputScreen } from './InputScreen';
