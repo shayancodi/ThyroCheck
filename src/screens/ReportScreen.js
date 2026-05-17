@@ -11,11 +11,13 @@ import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
 
 /**
- * Minimal luxury Report Screen with smooth animations
+ * Report Screen - Shows real API prediction results
  */
-export const ReportScreen = ({ navigation }) => {
+export const ReportScreen = ({ navigation, route }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(30)).current;
+
+  const results = route.params?.results;
 
   useEffect(() => {
     Animated.parallel([
@@ -32,25 +34,7 @@ export const ReportScreen = ({ navigation }) => {
     ]).start();
   }, []);
 
-  const handleDownload = () => {
-    console.log('Downloading report...');
-    alert('Report download started!');
-  };
-
-  const reportData = {
-    date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-    isHypertensive: true,
-    overallRisk: 'Medium',
-    cardiovascular: {
-      risk: 'Low',
-    },
-    metabolic: {
-      risk: 'Medium',
-    },
-    thyroid: {
-      risk: 'Low',
-    },
-  };
+  const date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   const getRiskColor = (risk) => {
     switch (risk.toLowerCase()) {
@@ -93,11 +77,31 @@ export const ReportScreen = ({ navigation }) => {
     );
   };
 
+  if (!results) {
+    return (
+      <View style={[globalStyles.container, { backgroundColor: Colors.background, justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={{ fontSize: Sizes.fontSize.lg, color: Colors.textSecondary }}>
+          No results yet.
+        </Text>
+        <Button
+          title="Enter Thyroid Values"
+          onPress={() => navigation.navigate('Input')}
+          style={{ marginTop: Sizes.lg, backgroundColor: Colors.primary, paddingHorizontal: Sizes.xl, paddingVertical: Sizes.md, borderRadius: 12 }}
+        />
+      </View>
+    );
+  }
+
+  const hfRisk = results.Heart_Failure_risk;
+  const chdRisk = results.Coronary_Heart_Disease_risk;
+  const hfLevel = results.Heart_Failure_level;
+  const chdLevel = results.Coronary_Heart_Disease_level;
+
+  const overallLevel = hfRisk > 50 || chdRisk > 50 ? 'High' : hfRisk > 25 || chdRisk > 25 ? 'Medium' : 'Low';
+
   return (
     <View style={[globalStyles.container, { backgroundColor: Colors.background }]}>
       <StatusBar style="dark" />
-      
-      {/* Minimal Animated Background */}
       <AnimatedBackground />
 
       <ScrollView
@@ -114,228 +118,159 @@ export const ReportScreen = ({ navigation }) => {
             transform: [{ translateY: slideAnim }],
           }}
         >
-          <Text
-            style={{
-              fontSize: Sizes.fontSize.xxl,
-              fontWeight: '600',
-              color: Colors.text,
-              marginBottom: Sizes.xs,
-              textAlign: 'center',
-              letterSpacing: -0.5,
-            }}
-          >
+          <Text style={{
+            fontSize: Sizes.fontSize.xxl,
+            fontWeight: '600',
+            color: Colors.text,
+            marginBottom: Sizes.xs,
+            textAlign: 'center',
+            letterSpacing: -0.5,
+          }}>
             Health Report
           </Text>
-          <Text
-            style={{
-              fontSize: Sizes.fontSize.sm,
-              color: Colors.textSecondary,
-              textAlign: 'center',
-              marginBottom: Sizes.xxl,
-              letterSpacing: 0.3,
-            }}
-          >
-            {reportData.date}
+          <Text style={{
+            fontSize: Sizes.fontSize.sm,
+            color: Colors.textSecondary,
+            textAlign: 'center',
+            marginBottom: Sizes.xxl,
+            letterSpacing: 0.3,
+          }}>
+            {date}
           </Text>
 
-          {/* Hypertensive Status - Prominent */}
-          <View
-            style={{
-              backgroundColor: Colors.surface,
-              borderRadius: 20,
-              padding: Sizes.xl,
-              marginBottom: Sizes.lg,
-              borderWidth: 1,
-              borderColor: reportData.isHypertensive ? Colors.error + '40' : Colors.success + '40',
-              borderLeftWidth: 4,
-              borderLeftColor: reportData.isHypertensive ? Colors.error : Colors.success,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: Sizes.fontSize.xs,
-                color: Colors.textSecondary,
-                marginBottom: Sizes.sm,
-                fontWeight: '500',
-                letterSpacing: 0.5,
-                textTransform: 'uppercase',
-              }}
-            >
-              Hypertension Status
-            </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: Sizes.sm }}>
-              <Text
-                style={{
-                  fontSize: Sizes.fontSize.xl,
-                  fontWeight: '600',
-                  color: Colors.text,
-                  letterSpacing: -0.5,
-                }}
-              >
-                {reportData.isHypertensive ? 'Yes' : 'No'}
-              </Text>
-              <RiskBadge risk={reportData.isHypertensive ? 'High' : 'Low'} />
-            </View>
-            <Text
-              style={{
-                fontSize: Sizes.fontSize.md,
-                color: Colors.text,
-                fontWeight: '400',
-                letterSpacing: -0.2,
-                lineHeight: 22,
-              }}
-            >
-              The person {reportData.isHypertensive ? 'is' : 'is not'} hypertensive.
-            </Text>
-            {reportData.isHypertensive && (
-              <Text
-                style={{
-                  fontSize: Sizes.fontSize.sm,
-                  color: Colors.textSecondary,
-                  marginTop: Sizes.sm,
-                  lineHeight: 20,
-                }}
-              >
-                Elevated blood pressure detected. Consult with your healthcare provider for management strategies.
-              </Text>
-            )}
-          </View>
-
           {/* Overall Risk */}
-          <View
-            style={{
-              backgroundColor: Colors.surface,
-              borderRadius: 20,
-              padding: Sizes.xl,
-              marginBottom: Sizes.lg,
-              borderWidth: 1,
-              borderColor: Colors.border,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: Sizes.fontSize.xs,
-                color: Colors.textSecondary,
-                marginBottom: Sizes.sm,
-                fontWeight: '500',
-                letterSpacing: 0.5,
-                textTransform: 'uppercase',
-              }}
-            >
+          <View style={{
+            backgroundColor: Colors.surface,
+            borderRadius: 20,
+            padding: Sizes.xl,
+            marginBottom: Sizes.lg,
+            borderWidth: 1,
+            borderColor: Colors.border,
+          }}>
+            <Text style={{
+              fontSize: Sizes.fontSize.xs,
+              color: Colors.textSecondary,
+              marginBottom: Sizes.sm,
+              fontWeight: '500',
+              letterSpacing: 0.5,
+              textTransform: 'uppercase',
+            }}>
               Overall Risk Level
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Text
-                style={{
-                  fontSize: Sizes.fontSize.xl,
-                  fontWeight: '600',
-                  color: Colors.text,
-                  letterSpacing: -0.5,
-                }}
-              >
-                {reportData.overallRisk}
+              <Text style={{
+                fontSize: Sizes.fontSize.xl,
+                fontWeight: '600',
+                color: Colors.text,
+                letterSpacing: -0.5,
+              }}>
+                {overallLevel}
               </Text>
-              <RiskBadge risk={reportData.overallRisk} />
+              <RiskBadge risk={overallLevel} />
             </View>
           </View>
 
-          {/* Risk Categories - Minimal */}
-          <View style={{ gap: Sizes.md, marginBottom: Sizes.xl }}>
-            <View
-              style={{
-                backgroundColor: Colors.surface,
-                borderRadius: 20,
-                padding: Sizes.lg,
-                borderWidth: 1,
-                borderColor: Colors.border,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.md,
-                    fontWeight: '500',
-                    color: Colors.text,
-                    letterSpacing: -0.2,
-                  }}
-                >
-                  Cardiovascular
-                </Text>
-                <RiskBadge risk={reportData.cardiovascular.risk} />
-              </View>
+          {/* Heart Failure */}
+          <View style={{
+            backgroundColor: Colors.surface,
+            borderRadius: 20,
+            padding: Sizes.xl,
+            marginBottom: Sizes.lg,
+            borderWidth: 1,
+            borderColor: getRiskColor(hfLevel) + '40',
+            borderLeftWidth: 4,
+            borderLeftColor: getRiskColor(hfLevel),
+          }}>
+            <Text style={{
+              fontSize: Sizes.fontSize.xs,
+              color: Colors.textSecondary,
+              marginBottom: Sizes.sm,
+              fontWeight: '500',
+              letterSpacing: 0.5,
+              textTransform: 'uppercase',
+            }}>
+              Heart Failure Risk
+            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: Sizes.sm }}>
+              <Text style={{
+                fontSize: Sizes.fontSize.xxxl,
+                fontWeight: '600',
+                color: Colors.text,
+              }}>
+                {hfRisk.toFixed(1)}%
+              </Text>
+              <RiskBadge risk={hfLevel} />
             </View>
-
-            <View
-              style={{
-                backgroundColor: Colors.surface,
-                borderRadius: 20,
-                padding: Sizes.lg,
-                borderWidth: 1,
-                borderColor: Colors.border,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.md,
-                    fontWeight: '500',
-                    color: Colors.text,
-                    letterSpacing: -0.2,
-                  }}
-                >
-                  Metabolic
-                </Text>
-                <RiskBadge risk={reportData.metabolic.risk} />
-              </View>
-            </View>
-
-            <View
-              style={{
-                backgroundColor: Colors.surface,
-                borderRadius: 20,
-                padding: Sizes.lg,
-                borderWidth: 1,
-                borderColor: Colors.border,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.md,
-                    fontWeight: '500',
-                    color: Colors.text,
-                    letterSpacing: -0.2,
-                  }}
-                >
-                  Thyroid Related
-                </Text>
-                <RiskBadge risk={reportData.thyroid.risk} />
-              </View>
-            </View>
+            <Text style={{
+              fontSize: Sizes.fontSize.sm,
+              color: Colors.textSecondary,
+              lineHeight: 20,
+            }}>
+              Based on thyroid panel analysis using AI prediction model.
+            </Text>
           </View>
 
-          {/* Download Button - Minimal */}
+          {/* Coronary Heart Disease */}
+          <View style={{
+            backgroundColor: Colors.surface,
+            borderRadius: 20,
+            padding: Sizes.xl,
+            marginBottom: Sizes.xl,
+            borderWidth: 1,
+            borderColor: getRiskColor(chdLevel) + '40',
+            borderLeftWidth: 4,
+            borderLeftColor: getRiskColor(chdLevel),
+          }}>
+            <Text style={{
+              fontSize: Sizes.fontSize.xs,
+              color: Colors.textSecondary,
+              marginBottom: Sizes.sm,
+              fontWeight: '500',
+              letterSpacing: 0.5,
+              textTransform: 'uppercase',
+            }}>
+              Coronary Heart Disease Risk
+            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: Sizes.sm }}>
+              <Text style={{
+                fontSize: Sizes.fontSize.xxxl,
+                fontWeight: '600',
+                color: Colors.text,
+              }}>
+                {chdRisk.toFixed(1)}%
+              </Text>
+              <RiskBadge risk={chdLevel} />
+            </View>
+            <Text style={{
+              fontSize: Sizes.fontSize.sm,
+              color: Colors.textSecondary,
+              lineHeight: 20,
+            }}>
+              Based on thyroid panel analysis using AI prediction model.
+            </Text>
+          </View>
+
+          {/* Disclaimer */}
+          <View style={{
+            backgroundColor: Colors.surfaceElevated,
+            borderRadius: 12,
+            padding: Sizes.lg,
+            marginBottom: Sizes.xl,
+          }}>
+            <Text style={{
+              fontSize: Sizes.fontSize.xs,
+              color: Colors.textTertiary,
+              lineHeight: 18,
+              textAlign: 'center',
+            }}>
+              This assessment is for informational purposes only and should not replace professional medical advice. Consult your healthcare provider for diagnosis and treatment.
+            </Text>
+          </View>
+
+          {/* Back Button */}
           <Button
-            title="Download Report"
-            onPress={handleDownload}
+            title="New Assessment"
+            onPress={() => navigation.navigate('Input')}
             style={{
               backgroundColor: Colors.primary,
               paddingVertical: Sizes.lg,
