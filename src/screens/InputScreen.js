@@ -38,9 +38,9 @@ export const InputScreen = ({ navigation }) => {
       TSH: parseFloat(tsh),
       TT3: parseFloat(tt3),
       TT4: parseFloat(tt4),
-      FT3: ft3 ? parseFloat(ft3) : null,
-      FT4: ft4 ? parseFloat(ft4) : null,
     };
+    if (ft3) patientData.FT3 = parseFloat(ft3);
+    if (ft4) patientData.FT4 = parseFloat(ft4);
 
     setLoading(true);
     try {

@@ -98,6 +98,7 @@ export const MainNavigator = () => {
     >
       <Stack.Screen name="MainTabs" component={MainTabs} />
       <Stack.Screen name="Input" component={InputScreen} />
+      <Stack.Screen name="Report" component={ReportScreen} />
     </Stack.Navigator>
   );
 };

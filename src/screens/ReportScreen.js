@@ -92,10 +92,10 @@ export const ReportScreen = ({ navigation, route }) => {
     );
   }
 
-  const hfRisk = results.Heart_Failure_risk;
-  const chdRisk = results.Coronary_Heart_Disease_risk;
-  const hfLevel = results.Heart_Failure_level;
-  const chdLevel = results.Coronary_Heart_Disease_level;
+const hfRisk = results.heart_failure.risk_percent;
+const chdRisk = results.coronary_heart_disease.risk_percent;
+const hfLevel = results.heart_failure.risk_level;
+const chdLevel = results.coronary_heart_disease.risk_level;
 
   const overallLevel = hfRisk > 50 || chdRisk > 50 ? 'High' : hfRisk > 25 || chdRisk > 25 ? 'Medium' : 'Low';
 
