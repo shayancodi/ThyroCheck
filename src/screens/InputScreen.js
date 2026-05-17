@@ -5,7 +5,6 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator,
   Alert,
   KeyboardAvoidingView,
   Platform,
@@ -15,6 +14,7 @@ import { globalStyles } from '../styles/globalStyles';
 import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
 import { predictRisk } from '../services/api';
+import { pickImage, takePhoto, extractTextFromImage, parseThyroidValues } from '../services/ocr';
 
 export const InputScreen = ({ navigation }) => {
   const [age, setAge] = useState('');
@@ -25,6 +25,35 @@ export const InputScreen = ({ navigation }) => {
   const [ft3, setFt3] = useState('');
   const [ft4, setFt4] = useState('');
   const [loading, setLoading] = useState(false);
+  const [scanning, setScanning] = useState(false);
+
+  const handleScan = async (source) => {
+    setScanning(true);
+    try {
+      const base64 = source === 'camera' ? await takePhoto() : await pickImage();
+      if (!base64) { setScanning(false); return; }
+
+      const text = await extractTextFromImage(base64);
+      const values = parseThyroidValues(text);
+
+      if (values.tsh) setTsh(values.tsh);
+      if (values.tt3) setTt3(values.tt3);
+      if (values.tt4) setTt4(values.tt4);
+      if (values.ft3) setFt3(values.ft3);
+      if (values.ft4) setFt4(values.ft4);
+
+      const found = Object.keys(values).length;
+      if (found > 0) {
+        Alert.alert('Scan Complete', `Found ${found} value(s). Please verify and fill in the rest.`);
+      } else {
+        Alert.alert('No Values Found', 'Could not detect thyroid values. Please enter them manually.');
+      }
+    } catch (error) {
+      Alert.alert('Scan Failed', error.message || 'Something went wrong. Try again.');
+    } finally {
+      setScanning(false);
+    }
+  };
 
   const handlePredict = async () => {
     if (!age || !gender || !tsh || !tt3 || !tt4) {
@@ -118,8 +147,58 @@ export const InputScreen = ({ navigation }) => {
             textAlign: 'center',
             marginBottom: Sizes.xl,
           }}>
-            Fill in your thyroid report values
+            Scan your report or enter values manually
           </Text>
+
+          {/* Scan Buttons */}
+          <View style={{ flexDirection: 'row', gap: Sizes.md, marginBottom: Sizes.xl }}>
+            <TouchableOpacity
+              onPress={() => handleScan('camera')}
+              disabled={scanning}
+              style={{
+                flex: 1,
+                padding: Sizes.lg,
+                borderRadius: Sizes.borderRadius.md,
+                borderWidth: 1.5,
+                borderColor: Colors.primary,
+                borderStyle: 'dashed',
+                alignItems: 'center',
+                opacity: scanning ? 0.5 : 1,
+              }}
+            >
+              <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📷</Text>
+              <Text style={{
+                color: Colors.primary,
+                fontWeight: '600',
+                fontSize: Sizes.fontSize.sm,
+              }}>
+                {scanning ? 'Scanning...' : 'Camera'}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleScan('gallery')}
+              disabled={scanning}
+              style={{
+                flex: 1,
+                padding: Sizes.lg,
+                borderRadius: Sizes.borderRadius.md,
+                borderWidth: 1.5,
+                borderColor: Colors.primary,
+                borderStyle: 'dashed',
+                alignItems: 'center',
+                opacity: scanning ? 0.5 : 1,
+              }}
+            >
+              <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>🖼️</Text>
+              <Text style={{
+                color: Colors.primary,
+                fontWeight: '600',
+                fontSize: Sizes.fontSize.sm,
+              }}>
+                {scanning ? 'Scanning...' : 'Gallery'}
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <InputField label="Age" value={age} onChangeText={setAge} placeholder="e.g. 45" required />
 
