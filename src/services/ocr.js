@@ -49,6 +49,16 @@ export const extractTextFromImage = async (base64Image) => {
   );
 
   const data = await response.json();
+  console.log('Vision API Response:', JSON.stringify(data, null, 2));
+
+  if (data.error) {
+    throw new Error(data.error.message || 'API error');
+  }
+
+  if (data.responses?.[0]?.error) {
+    throw new Error(data.responses[0].error.message || 'Image processing error');
+  }
+
   if (data.responses?.[0]?.fullTextAnnotation?.text) {
     return data.responses[0].fullTextAnnotation.text;
   }
