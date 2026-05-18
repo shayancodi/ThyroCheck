@@ -7,7 +7,7 @@ import {
   Platform,
   ScrollView,
   TouchableOpacity,
-  alert,
+  Alert,
 } from 'react-native';
 
 import { StatusBar } from 'expo-status-bar';
@@ -26,12 +26,28 @@ export const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSignUp = () => {
+const handleSignUp = async () => {
+    if (!name || !email || !password) {
+      Alert.alert('Error', 'Please fill in all fields.');
+      return;
+    }
+    if (password.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters.');
+      return;
+    }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
       navigation.replace('MainApp');
-    }, 1000);
+    } catch (error) {
+      let message = 'Something went wrong.';
+      if (error.code === 'auth/email-already-in-use') message = 'This email is already registered.';
+      if (error.code === 'auth/invalid-email') message = 'Invalid email address.';
+      if (error.code === 'auth/weak-password') message = 'Password is too weak.';
+      Alert.alert('Sign Up Failed', message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

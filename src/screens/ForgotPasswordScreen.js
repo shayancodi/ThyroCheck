@@ -7,11 +7,14 @@ import {
   Platform,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../styles/globalStyles';
 import { Button } from '../components';
 import { Colors, Sizes } from '../constants';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../services/firebase';
 
 /**
  * Minimal Forgot Password Screen
@@ -21,13 +24,23 @@ export const ForgotPasswordScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
-  const handleResetPassword = () => {
+const handleResetPassword = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email.');
+      return;
+    }
     setLoading(true);
-    // Simulate password reset process
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await sendPasswordResetEmail(auth, email);
       setEmailSent(true);
-    }, 1000);
+    } catch (error) {
+      let message = 'Something went wrong.';
+      if (error.code === 'auth/user-not-found') message = 'No account found with this email.';
+      if (error.code === 'auth/invalid-email') message = 'Invalid email address.';
+      Alert.alert('Reset Failed', message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (emailSent) {
