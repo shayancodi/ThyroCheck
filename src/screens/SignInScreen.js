@@ -7,11 +7,14 @@ import {
   Platform,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../styles/globalStyles';
 import { Button } from '../components';
 import { Colors, Sizes } from '../constants';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../services/firebase';
 
 /**
  * Minimal Sign In Screen
@@ -21,12 +24,24 @@ export const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter email and password.');
+      return;
+    }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       navigation.replace('MainApp');
-    }, 1000);
+    } catch (error) {
+      let message = 'Something went wrong.';
+      if (error.code === 'auth/invalid-credential') message = 'Invalid email or password.';
+      if (error.code === 'auth/user-not-found') message = 'No account found with this email.';
+      if (error.code === 'auth/too-many-requests') message = 'Too many attempts. Try again later.';
+      Alert.alert('Sign In Failed', message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
