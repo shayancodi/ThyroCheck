@@ -3,12 +3,19 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 import pandas as pd
+import easyocr
+import base64
+import re
+from io import BytesIO
 
 # Load saved models and scaler
 hf_model = joblib.load("ThyroCheckDataSet/models/Heart_Failure_model.pkl")
 chd_model = joblib.load("ThyroCheckDataSet/models/Coronary_Heart_Disease_model.pkl")
 scaler = joblib.load("ThyroCheckDataSet/scaler.pkl")
 defaults = joblib.load("ThyroCheckDataSet/default_values.pkl")
+
+# Initialize EasyOCR reader
+reader = easyocr.Reader(['en'], gpu=False)
 
 # Create FastAPI app
 app = FastAPI(title="ThyroCheck API", version="1.0")
@@ -74,4 +81,38 @@ def predict(patient: PatientInput):
             "risk_percent": round(chd_risk, 1),
             "risk_level": get_level(chd_risk)
         }
+    }
+
+
+# --- OCR Endpoint ---
+class OCRInput(BaseModel):
+    image: str  # base64 encoded image
+
+@app.post("/ocr")
+def extract_thyroid_values(data: OCRInput):
+    # Decode base64 image
+    image_bytes = base64.b64decode(data.image)
+
+    # Run EasyOCR
+    results = reader.readtext(image_bytes)
+    full_text = " ".join([r[1] for r in results])
+
+    # Parse thyroid values from text
+    values = {}
+    patterns = [
+        ("tsh", r'TSH[\s:.\-]*(\d+\.?\d*)'),
+        ("tt3", r'(?:TOTAL\s*T3|TT3|TOTAL\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)'),
+        ("tt4", r'(?:TOTAL\s*T4|TT4|TOTAL\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)'),
+        ("ft3", r'(?:FREE\s*T3|FT3|FREE\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)'),
+        ("ft4", r'(?:FREE\s*T4|FT4|FREE\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)'),
+    ]
+
+    for key, pattern in patterns:
+        match = re.search(pattern, full_text, re.IGNORECASE)
+        if match:
+            values[key] = match.group(1)
+
+    return {
+        "extracted_text": full_text,
+        "values": values
     }

@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 
-const GOOGLE_VISION_API_KEY = 'AIzaSyBGihYsFtnRJdKmbXm_D7Z9hVAAc2PebDM';
+const API_BASE_URL = 'https://shayanhugg-thyrocheckapi.hf.space';
 
 export const pickImage = async () => {
   const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -33,54 +33,19 @@ export const takePhoto = async () => {
   return result.assets[0].base64;
 };
 
-export const extractTextFromImage = async (base64Image) => {
-  const response = await fetch(
-    `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_VISION_API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        requests: [{
-          image: { content: base64Image },
-          features: [{ type: 'TEXT_DETECTION' }],
-        }],
-      }),
-    }
-  );
-
-  const data = await response.json();
-  console.log('Vision API Response:', JSON.stringify(data, null, 2));
-
-  if (data.error) {
-    throw new Error(data.error.message || 'API error');
-  }
-
-  if (data.responses?.[0]?.error) {
-    throw new Error(data.responses[0].error.message || 'Image processing error');
-  }
-
-  if (data.responses?.[0]?.fullTextAnnotation?.text) {
-    return data.responses[0].fullTextAnnotation.text;
-  }
-  throw new Error('No text found in image');
-};
-
-export const parseThyroidValues = (text) => {
-  const values = {};
-  const lines = text.toUpperCase();
-
-  const patterns = [
-    { key: 'tsh', regex: /TSH[\s:.\-]*(\d+\.?\d*)/i },
-    { key: 'tt3', regex: /(?:TOTAL\s*T3|TT3|TOTAL\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)/i },
-    { key: 'tt4', regex: /(?:TOTAL\s*T4|TT4|TOTAL\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)/i },
-    { key: 'ft3', regex: /(?:FREE\s*T3|FT3|FREE\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)/i },
-    { key: 'ft4', regex: /(?:FREE\s*T4|FT4|FREE\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)/i },
-  ];
-
-  patterns.forEach(({ key, regex }) => {
-    const match = text.match(regex);
-    if (match) values[key] = match[1];
+export const extractThyroidValues = async (base64Image) => {
+  const response = await fetch(`${API_BASE_URL}/ocr`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: base64Image }),
   });
 
-  return values;
+  const data = await response.json();
+  console.log('OCR Response:', data);
+
+  if (!response.ok) {
+    throw new Error(data.detail || 'OCR failed');
+  }
+
+  return data.values;
 };

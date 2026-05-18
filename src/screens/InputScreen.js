@@ -14,7 +14,7 @@ import { globalStyles } from '../styles/globalStyles';
 import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
 import { predictRisk } from '../services/api';
-import { pickImage, takePhoto, extractTextFromImage, parseThyroidValues } from '../services/ocr';
+import { pickImage, takePhoto, extractThyroidValues } from '../services/ocr';
 
 export const InputScreen = ({ navigation }) => {
   const [age, setAge] = useState('');
@@ -33,8 +33,7 @@ export const InputScreen = ({ navigation }) => {
       const base64 = source === 'camera' ? await takePhoto() : await pickImage();
       if (!base64) { setScanning(false); return; }
 
-      const text = await extractTextFromImage(base64);
-      const values = parseThyroidValues(text);
+      const values = await extractThyroidValues(base64);
 
       if (values.tsh) setTsh(values.tsh);
       if (values.tt3) setTt3(values.tt3);
