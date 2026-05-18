@@ -7,10 +7,14 @@ import {
   Platform,
   ScrollView,
   TouchableOpacity,
+  alert,
 } from 'react-native';
+
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../styles/globalStyles';
 import { Button } from '../components';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../services/firebase';
 import { Colors, Sizes } from '../constants';
 
 /**
