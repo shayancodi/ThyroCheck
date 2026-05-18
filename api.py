@@ -100,17 +100,18 @@ def extract_thyroid_values(data: OCRInput):
     # Parse thyroid values from text
     values = {}
     patterns = [
-        ("tsh", r'TSH[\s:.\-]*(\d+\.?\d*)'),
-        ("tt3", r'(?:TOTAL\s*T3|TT3|TOTAL\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)'),
-        ("tt4", r'(?:TOTAL\s*T4|TT4|TOTAL\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)'),
-        ("ft3", r'(?:FREE\s*T3|FT3|FREE\s*TRIIODOTHYRONINE)[\s:.\-]*(\d+\.?\d*)'),
-        ("ft4", r'(?:FREE\s*T4|FT4|FREE\s*THYROXINE)[\s:.\-]*(\d+\.?\d*)'),
+        ("tsh", r'TSH[^0-9]*(\d+(?:[.,\s]\d+)?)'),
+        ("tt3", r'T3[\s]*(?:TOTA[LI]|TCTAL)?[^0-9]*(\d+(?:[.,\s]\d+)?)'),
+        ("tt4", r'T4[\s]*(?:TOTA[LI]|TCTAL)?[^0-9]*(\d+(?:[.,\s]\d+)?)'),
+        ("ft3", r'(?:FREE[\s]*T3|FT3)[^0-9]*(\d+(?:[.,\s]\d+)?)'),
+        ("ft4", r'(?:FREE[\s]*T4|FT4)[^0-9]*(\d+(?:[.,\s]\d+)?)'),
     ]
 
     for key, pattern in patterns:
         match = re.search(pattern, full_text, re.IGNORECASE)
         if match:
-            values[key] = match.group(1)
+            value = match.group(1).replace(',', '.').replace(' ', '.')
+            values[key] = value
 
     return {
         "extracted_text": full_text,
