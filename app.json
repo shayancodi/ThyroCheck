@@ -14,12 +14,13 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
+  "android": {
+  "package": "com.shayancodi.thyrocheck",
+  "adaptiveIcon": {
+    "foregroundImage": "./src/assets/images/adaptive-icon.png",
+    "backgroundColor": "#ffffff"
+  }
+},
     "web": {
       "favicon": "./src/assets/images/favicon.png"
     }
