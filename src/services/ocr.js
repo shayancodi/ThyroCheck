@@ -1,6 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
-
-const API_BASE_URL = 'http://192.168.100.12:7860';
+const API_BASE_URL = 'https://shayanhugg-thyrocheckapi.hf.space';
 
 export const pickImage = async () => {
   const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
