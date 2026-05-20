@@ -26,7 +26,7 @@ We use industry-standard security measures to protect your information.
 This app is not intended for children under 13.
 
 ## Contact
-For questions, contact: shayancodi@gmail.com
+For questions, contact: shayan.cms@gmail.com
 
 ## Changes
 We may update this policy. Changes will be posted here.
