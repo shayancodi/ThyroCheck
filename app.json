@@ -14,15 +14,20 @@
     "ios": {
       "supportsTablet": true
     },
-  "android": {
-  "package": "com.shayancodi.thyrocheck",
-  "adaptiveIcon": {
-    "foregroundImage": "./src/assets/images/adaptive-icon.png",
-    "backgroundColor": "#ffffff"
-  }
-},
+    "android": {
+      "package": "com.shayancodes.thyrocheck",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
     "web": {
       "favicon": "./src/assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "85dcfa7d-3689-4d46-9764-8b1e7cd91b1e"
+      }
     }
   }
 }
