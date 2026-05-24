@@ -1,0 +1,2948 @@
+> **[ThyroCheck: Hypertension & Disease Risk Predictor]{.underline}**
+
+![](media/image1.png){width="1.8868405511811024in"
+height="1.7937489063867016in"}
+
+> **Project ID: Fall-2025-32**
+>
+> **Session: BSCS Fall 2022 to 2026**
+
+# Project Advisor: Dr. Khurram Ejaz Submitted By {#project-advisor-dr.-khurram-ejaz-submitted-by .unnumbered}
+
+  -----------------------------------------------------------------------
+  Muhammad Shayan Akram                              70131438
+  -------------------------------------------------- --------------------
+  Muhammad Noor Sultan                               70131318
+
+  Dua Ali                                            70077945
+  -----------------------------------------------------------------------
+
+> Department of Computer Science & IT The University of Lahore
+
+Lahore, Pakistan
+
+## Declaration {#declaration .unnumbered}
+
+> We have read the project guidelines and we understand the meaning of
+> academic dishonesty, in particular plagiarism and collusion. We hereby
+> declare that the work we submitted for our final year project,
+> entitled **[ThyroCheck: Smoker, Hypertension & Disease Risk
+> Predictor]{.underline}** is original work and has not been printed,
+> published or submitted before as final year project, research work,
+> publication or any other documentation.
+>
+> **Group Member 1 Name: Muhammad Shayan Akram SAP No: 70131438**
+>
+> **Signature: ..............................**
+>
+> **Group Member 2 Name: Muhammad Noor Sultan SAP No: 70131318**
+>
+> **Signature: ..............................**
+>
+> **Group Member 3 Name: Dua Ali SAP No: 70077945**
+>
+> **Signature: ..............................**
+
+## Statement of Submission {#statement-of-submission .unnumbered}
+
+> This is to certify that **Muhammad Shayan Akram** Roll No. **70131438,
+> Muhammad Noor Sultan** Roll No. **70131318** and **Dua Ali** Roll No.
+> **70077945** have successfully submitted the final project named as:
+> **ThyroCheck: Smoker, Hypertension & Disease Risk Predictor**, at
+> Computer Science & IT Department, The University of Lahore, Lahore
+> Pakistan, to fulfill the partial requirement of the degree of **BS in
+> Computer Science**.
+
+##### Supervisor Name: Dr. Khurram Ejaz {#supervisor-name-dr.-khurram-ejaz .unnumbered}
+
+> **Signature: .............................. Date:
+> ...........................**
+
+## Dedication {#dedication .unnumbered}
+
+> This project is dedicated to my father, who taught me that the best
+> kind of knowledge to have is which is learned for its own sake. It is
+> also dedicated to my mother, who taught me that even the largest task
+> can be accomplished if it is done one step at a time. This project is
+> also dedicated to our teachers who taught us well, created our
+> interest in such fields and made us capable enough to create something
+> of our own. This project is also dedicated to us as for our motivation
+> and dedication to the field of work.
+
+## Acknowledgement {#acknowledgement .unnumbered}
+
+> We truly acknowledge the cooperation and help made by Name of **Dr.
+> Khurram Ejaz**, **Assistant Professor** of **The University of
+> Lahore**. He has been a constant source of guidance throughout the
+> course of this project. We are also thankful to our friends and
+> families whose silent support led us to complete our project.
+>
+> Date:
+
+## Abstract {#abstract .unnumbered}
+
+> Thyroid disorders are among the most prevalent endocrine diseases and
+> are often associated with long-term complications affecting multiple
+> physiological systems, particularly cardiovascular and metabolic
+> functions. Interpreting thyroid laboratory reports can be challenging
+> for patients, leading to delayed awareness of potential health risks.
+> ThyroCheck proposes a mobile-based intelligent health risk assessment
+> system that integrates Optical Character Recognition (OCR), Machine
+> Learning (ML), and cloud-based backend services to analyze thyroid
+> laboratory reports and provide multi-domain risk evaluation.
+>
+> The proposed solution is implemented as a cross-platform React Native
+> mobile application that enables users to securely sign up and sign in,
+> upload or scan thyroid laboratory reports in image or PDF format, and
+> maintain historical health records. Firebase Authentication is used to
+> manage secure user access, while Firebase Cloud Firestore serves as
+> the backend database for storing extracted report values, prediction
+> results, and user history in a structured and privacy-aware manner.
+> Uploaded reports are processed on a Python-based backend, where OCR
+> techniques are applied to automatically extract thyroid hormone values
+> such as TSH, T3, and T4.
+>
+> The extracted data, along with demographic and lifestyle information,
+> is fed into trained machine learning models to assess hypertension
+> risk and estimate future health risk levels across three independent
+> domains: cardiovascular risk, metabolic complication risk, and
+> thyroid-related complication risk. Each risk is reported using
+> categorical levels (Low, Medium, High) to ensure interpretability and
+> clinical safety. ThyroCheck generates a comprehensive PDF report
+> summarizing extracted laboratory values, risk predictions, and
+> explanatory insights for the user.
+>
+> ThyroCheck is designed as a decision-support system rather than a
+> diagnostic tool and incorporates ethical considerations related to
+> data privacy and medical responsibility. This project demonstrates the
+> effective integration of mobile application development, OCR-based
+> data extraction, machine learning--driven risk assessment, and
+> cloud-based data management to enhance early health risk awareness and
+> accessibility to intelligent healthcare support solutions.
+
+## Area of the Project {#area-of-the-project .unnumbered}
+
+> ***Artificial Intelligence (AI):*** Uses intelligent algorithms to
+> analyze thyroid data and provide risk assessments.
+>
+> ***Machine Learning (ML):*** Trains models to predict hypertension and
+> multi-domain health risks from extracted features.
+>
+> ***Healthcare Informatics:*** Applies AI/ML to interpret medical
+> reports and support patient health awareness.
+>
+> ***Mobile Application Development***: Implements a React Native app
+> for user-friendly report upload and result display.
+>
+> ***Optical Character Recognition (OCR):*** Automatically extracts
+> thyroid hormone values from images and PDFs.
+>
+> ***Cloud-Based Systems / Firebase***: Manages secure user
+> authentication and stores report data in the cloud.
+>
+> ***Decision Support Systems (DSS):*** Provides risk-based insights to
+> assist users in understanding potential health complications.
+
+## Technologies used {#technologies-used .unnumbered}
+
+> The technologies used in this project include React Native, React
+> Navigation, Expo Image Picker, React Native Document Picker, React
+> Native PDF, Python, Flask, Pandas, NumPy, Scikit-learn, XGBoost,
+> OpenCV, Pillow, EasyOCR, Tesseract OCR, Firebase Authentication,
+> Firebase Cloud Firestore, ReportLab, Regex, Git & GitHub, Visual
+> Studio Code (VS Code), Android Studio / Emulator and
+> Matplotlib/Seaborn.
+
+# List of Figures {#list-of-figures .unnumbered}
+
+> [Figure 1 Product Perspective Architectural Diagram 9](#_bookmark32)
+>
+> [Figure 2 User Registration Use Case Diagram 24](#_bookmark68)
+>
+> [Figure 3 User Login Use Case Diagram 25](#_bookmark70)
+>
+> [Figure 4 User Password Reset Use Case Diagram 26](#_bookmark72)
+>
+> [Figure 5 User Providing Smoking Status Use Case Diagram
+> 28](#_bookmark74)
+>
+> [Figure 6 Upload Thyroid Reports Use Case Diagram 29](#_bookmark76)
+>
+> [Figure 7 OCR Error & Prompt for Re-Uploading 30](#_bookmark78)
+>
+> [Figure 8 Extract TSH, T3 & T4 Value Using OCR Use Case Diagram
+> 31](#_bookmark80)
+>
+> [Figure 9 Storing Data for ML Processing Use Case Diagram
+> 32](#_bookmark82)
+>
+> [Figure 10 Predict Hypertension Status Using ML Model Use Case Diagram
+> 33](#_bookmark84)
+>
+> [Figure 11 Risk Assessment Use Case Diagram 35](#_bookmark86)
+>
+> [Figure 12 PDF Report Use Case Diagram 37](#_bookmark88)
+>
+> [Figure 13 View & Download PDF Reports Use Case Diagram
+> 38](#_bookmark90)
+>
+> [Figure 14 Notifying User PDF Report is ready Use Case Diagram
+> 39](#_bookmark92)
+>
+> [Figure 15 Storage and Historical Reports & Results Use Case Diagram
+> 40](#_bookmark94)
+>
+> [Figure 16 Securely Store User Data Use Case Diagram 41](#_bookmark96)
+>
+> [Figure 17 Handle Multiple User Use Case Diagram 42](#_bookmark98)
+>
+> [Figure 18 Manage Cloud Storage Use Case Diagram 43](#_bookmark100)
+>
+> [Figure 19 Architecture Diagram 44](#_bookmark104)
+>
+> [Figure 20 ERD with Data Dictonary 45](#_bookmark106)
+>
+> [Figure 21 Data Flow Diagram Level 0 46](#_bookmark110)
+>
+> [Figure 22 Data Flow Diagram Level 1 47](#_bookmark112)
+>
+> [Figure 23 Class Diagram 48](#_bookmark114)
+>
+> [Figure 24 User Registration Activity Diagram 49](#_bookmark116)
+>
+> [Figure 25 User Login Activity Diagram 50](#_bookmark117)
+>
+> [Figure 26 Password Reset Activity Diagram 51](#_bookmark118)
+>
+> [Figure 27 User Provide Smoking Status Activity Diagram
+> 52](#_bookmark119)
+>
+> [Figure 28 Upload Thyroid Report Upload Activity Diagram
+> 53](#_bookmark120)
+>
+> [Figure 29 Flag OCR Error & Prompt for Re-Upload Activity Diagram
+> 54](#_bookmark121)
+>
+> [Figure 30 Extraction of TSH, T3 and T4 values using OCR
+> 55](#_bookmark122)
+>
+> [Figure 31 Risk Assessment Diagram 56](#_bookmark123)
+>
+> [Figure 32 Generate PDF Report Activity Diagram 57](#_bookmark124)
+>
+> [Figure 33 View and Download PDF Reports Activity Diagram
+> 58](#_bookmark125)
+>
+> [Figure 34 Store and Manage historical Reports and Results Activity
+> Diagram 59](#_bookmark126)
+>
+> [Figure 35 Securely Store Data in Firebase Activity Diagram
+> 60](#_bookmark127)
+>
+> [Figure 36 Handle Multiple users securely Activity Diagram
+> 61](#_bookmark128)
+>
+> [Figure 37 Managing Cloud Storage Usage Activity Diagram
+> 62](#_bookmark129)
+>
+> [Figure 38 Sequence Diagram User Registration 63](#_bookmark131)
+>
+> [Figure 39 Sequence Diagram User Sign-In 64](#_bookmark132)
+>
+> [Figure 40 Sequence Diagram Password Reset 65](#_bookmark133)
+>
+> [Figure 41 Sequence Diagram Smoking Status 66](#_bookmark134)
+>
+> [Figure 42 Sequence Diagram Upload Thyroid Reports 67](#_bookmark135)
+>
+> [Figure 43 Sequence Diagram Validate Uploaded Capture Quality
+> 68](#_bookmark136)
+>
+> [Figure 44 Sequence Diagram Extract TSH, T3 & T4 Values
+> 69](#_bookmark137)
+>
+> [Figure 45 Sequence Diagram Risk Assessment 70](#_bookmark138)
+>
+> [Figure 46 Sequence Diagram PDF Report Generation 71](#_bookmark139)
+>
+> [Figure 47 Sequence Diagram View Download PDF Report
+> 72](#_bookmark140)
+>
+> [Figure 48 Sequence Diagram Store and Manage Historical Reports and
+> Results 73](#_bookmark141)
+>
+> [Figure 49 Sequence Diagram Handle Multiple Users 74](#_bookmark142)
+>
+> [Figure 50 Sequence Diagram Dynamically Manage Cloud Storage
+> 75](#_bookmark143)
+>
+> [Figure 51 State Transition Diagram 76](#_bookmark144)
+>
+> [Figure 52 Component Diagram 77](#_bookmark146)
+>
+> [Figure 53 Deployment Diagram 78](#_bookmark148)
+>
+> [Figure 54 User Interface - Login Page 79](#_bookmark150)
+>
+> [Figure 55 User Interface - Sign Up Page 81](#homepage)
+>
+> [Figure 56 User Interface - Home Page 82](#_bookmark152)
+>
+> [Figure 57 User Interface - Profile Page 83](#_bookmark153)
+>
+> [Figure 58 User Interface - Report Page 84](#_bookmark154)
+>
+> [Figure 59 User Interface - Password Reset Page 85](#_bookmark155)
+
+# List of Tables {#list-of-tables .unnumbered}
+
+> [Table 1 Acronyms 6](#_bookmark19)
+>
+> [Table 2 Abbreviations 6](#_bookmark20)
+>
+> [Table 3 FR User Registration 10](#_bookmark34)
+>
+> [Table 4 FR User Login 10](#_bookmark35)
+>
+> [Table 5 FR Password Reset 11](#_bookmark36)
+>
+> [Table 6 FR Report Upload 11](#_bookmark37)
+>
+> [Table 7 FR Scan Report 12](#_bookmark38)
+>
+> [Table 8 FR OCR Extraction 12](#_bookmark39)
+>
+> [Table 9 FR OCR Error Handling 13](#_bookmark40)
+>
+> [Table 10 FR Hypertension Prediction 13](#_bookmark41)
+>
+> [Table 11 FR Cardiovascular Risk Assessment 14](#_bookmark42)
+>
+> [Table 12 FR Metabolic Risk Assessment 14](#_bookmark43)
+>
+> [Table 13 FR Thyroid Risk Assessment 15](#_bookmark44)
+>
+> [Table 14 FR PDF Report Generation 15](#_bookmark45)
+>
+> [Table 15 FR View & Download PDF Reports 16](#_bookmark46)
+>
+> [Table 16 FR Store and Manage Historical Reports and Results
+> 16](#_bookmark47)
+>
+> [Table 17 FR Secure Store User Data in Firebase 17](#_bookmark48)
+>
+> [Table 18 FR Handle Multiple Users Securely 17](#_bookmark49)
+>
+> [Table 19 FR Dynamically Manage Cloude Storage Usage 18](#_bookmark50)
+>
+> [Table 20 User Registration Use Case Diagram 24](#_bookmark69)
+>
+> [Table 21 User Login Use Case Table 25](#_bookmark71)
+>
+> [Table 22 User Password Reset Use Case Table 27](#_bookmark73)
+>
+> [Table 23 User Smoking Status Use Case Table 28](#_bookmark75)
+>
+> [Table 24 Upload Thyroid Use Case Table 29](#_bookmark77)
+>
+> [Table 25 Flag OCR Error and Prompt for Re-Uploading Use Case Table
+> 30](#_bookmark79)
+>
+> [Table 26 Extract TSH, T3 & T4 Value using OCR Use Case Table
+> 31](#_bookmark81)
+>
+> [Table 27 Storing Data for ML Processing Use Case Table
+> 32](#_bookmark83)
+>
+> [Table 28 Predict Hypertension Status Using ML Model Use Case Table
+> 34](#_bookmark85)
+>
+> [Table 29 Risk Assessment Use Case Table 36](#_bookmark87)
+>
+> [Table 30 Generate PDF Report Use Case Table 37](#_bookmark89)
+>
+> [Table 31 View and Download Use Case Table 38](#_bookmark91)
+>
+> [Table 32 Notifying User PDF Report is ready Use Case Table
+> 39](#_bookmark93)
+>
+> [Table 33 Storage and Historical Reports and Result Use Case Table
+> 40](#_bookmark95)
+>
+> [Table 34 Securely Store User Data Use Case Table 41](#_bookmark97)
+>
+> [Table 35 Handle Multiple Users Securely Data Use Case Table
+> 42](#_bookmark99)
+>
+> [Table 36 Manage Cloud Storage Use Case Table 43](#_bookmark101)
+
+# Table of Content {#table-of-content .unnumbered}
+
+#  {#section .unnumbered}
+
+[Declaration i](#declaration)
+
+[Statement of Submission ii](#statement-of-submission)
+
+[Dedication iii](#dedication)
+
+[Acknowledgement iv](#acknowledgement)
+
+[Abstract v](#abstract)
+
+[List of Figures vii](#list-of-figures)
+
+[List of Tables ix](#list-of-tables)
+
+[Chapter 1: Introduction to the Problem
+1](#chapter-1-introduction-to-the-problem)
+
+1.  [Introduction 1](#introduction)
+
+2.  [Purpose 1](#purpose)
+
+3.  [Objective 2](#objective)
+
+4.  [Existing Solution 2](#existing-solution)
+
+5.  [Proposed Solution 3](#proposed-solution)
+
+[Chapter 2: Software Requirement Specification
+4](#chapter-2-software-requirement-specification)
+
+1.  [Introduction 4](#introduction-1)
+
+    1.  [Purpose 4](#purpose-1)
+
+    2.  [Scope 4](#scope)
+
+    3.  [Definitions, acronyms, and abbreviations
+        5](#definitions-acronyms-and-abbreviations-definitions--)
+
+[Acronyms 6](#acronyms--)
+
+2.  [Overall description 7](#overall-description)
+
+    1.  [Product perspective 7](#product-perspective)
+
+-   [System Interfaces 7](#system-interfaces)
+
+-   [User Interfaces (Screenshots of interfaces are given in the User
+    Manual in Chapter 5) 7](#_bookmark24)
+
+-   [Hardware Interfaces 8](#hardware-interfaces)
+
+-   [Software Interfaces 8](#software-interfaces)
+
+-   [Communication Interfaces 8](#_bookmark27)
+
+-   [Memory 8](#memory)
+
+-   [Operations 8](#operations)
+
+-   [Site Adaptation Requirements 8](#site-adaptation-requirements)
+
+[Architectural Diagram 9](#architectural-diagram)
+
+1.  [Product functions 10](#product-functions)
+
+2.  [User characteristics 19](#user-characteristics)
+
+3.  [Constraints 19](#constraints)
+
+[Regulatory Policies 19](#regulatory-policies)
+
+[Hardware Limitations 19](#hardware-limitations)
+
+[Interfaces to Other Applications 20](#interfaces-to-other-applications)
+
+[Parallel Operation 20](#parallel-operation)
+
+[Audit Functions 20](#audit-functions)
+
+[Control Functions 20](#control-functions)
+
+[Higher-Order Language Requirements
+20](#higher-order-language-requirements)
+
+[Signal Handshake Protocols 20](#signal-handshake-protocols)
+
+[Reliability Requirements 20](#reliability-requirements)
+
+4.  [Assumptions and dependencies 21](#assumptions-and-dependencies)
+
+5.  [Apportioning of requirements 21](#apportioning-of-requirements)
+
+```{=html}
+<!-- -->
+```
+1.  [Specific requirements 21](#specific-requirements)
+
+    1.  [Functional Requirements 21](#functional-requirements)
+
+    2.  [Non-functional Requirements 22](#non-functional-requirements)
+
+[Chapter 3: Use Case Analysis 24](#chapter-3-use-case-analysis)
+
+[Chapter 4: Design 44](#chapter-4-design)
+
+1.  [Architecture Diagram 44](#architecture-diagram)
+
+2.  [ERD with data dictionary 45](#erd-with-data-dictionary)
+
+3.  [Data Flow diagram 46](#data-flow-diagram)
+
+[Data flow diagram includes two levels and both of them are given below
+46](#_bookmark108)
+
+1.  [The level 0 46](#the-level-0)
+
+2.  [The level 1 47](#the-level-1)
+
+```{=html}
+<!-- -->
+```
+4.  [Class Diagram 48](#class-diagram)
+
+5.  [Activity Diagram 49](#activity-diagram)
+
+6.  [Sequence Diagram 63](#sequence-diagram)
+
+```{=html}
+<!-- -->
+```
+8.  [Component Diagram 77](#component-diagram)
+
+9.  [Deployment Diagram 78](#deployment-diagram)
+
+[Chapter 5: User Manual 79](#chapter-5-user-manual)
+
+[References 86](#references)
+
+[Appendix 87](#appendix)
+
+# Chapter 1: Introduction to the Problem {#chapter-1-introduction-to-the-problem .unnumbered}
+
+#### Introduction
+
+> Thyroid disorders are among the most common endocrine diseases
+> worldwide and are frequently associated with other chronic health
+> conditions, particularly hypertension, cardiovascular diseases, and
+> metabolic disorders. Abnormal levels of thyroid hormones such as
+> Thyroid Stimulating Hormone (TSH), Triiodothyronine (T3), and
+> Thyroxine (T4) can influence blood pressure regulation and metabolic
+> balance, potentially leading to long-term complications. Early
+> identification of hypertensive status and related health risks in
+> patients with thyroid abnormalities is therefore crucial for timely
+> intervention and prevention. Despite the availability of thyroid
+> laboratory testing, many patients face significant difficulty in
+> interpreting their reports and understanding whether they are
+> hypertensive or non-hypertensive, as well as the potential health
+> risks associated with their condition. Medical reports are often
+> complex and require professional interpretation, which may not always
+> be accessible during short clinical consultations. As a result,
+> patients may remain unaware of both their hypertension status and
+> their broader risk of developing cardiovascular, metabolic, or
+> thyroid-related complications.
+>
+> In addition, thyroid laboratory reports are commonly stored as paper
+> documents, scanned images, or PDF files, making manual analysis and
+> long-term health tracking inefficient. Existing digital health
+> solutions often lack automated report interpretation, hypertension
+> prediction, and multi- domain risk assessment within a single
+> integrated platform. Most systems focus on isolated conditions and do
+> not provide a comprehensive overview of how thyroid disorders can
+> simultaneously affect multiple physiological systems. With the growing
+> adoption of mobile health technologies, there is a clear need for an
+> intelligent, mobile-based decision-support system that can
+> automatically extract thyroid hormone values from laboratory reports,
+> predict whether a patient is hypertensive or non-hypertensive, and
+> evaluate potential health risks across three independent domains:
+> cardiovascular risk, metabolic complication risk, and thyroid-related
+> complication risk. Addressing this problem through the integration of
+> Optical Character Recognition (OCR), machine learning, and cloud-based
+> services can enhance early health awareness, improve accessibility to
+> personalized health insights, and support informed decision-making
+> while maintaining ethical standards and data privacy.
+
+#### Purpose
+
+> The purpose of this project is to develop a mobile-based intelligent
+> health assessment system that enables users to predict whether a
+> patient is hypertensive or non-hypertensive based on thyroid
+> laboratory data. ThyroCheck aims to simplify the interpretation of
+> thyroid reports by automatically
+>
+> extracting key hormone values such as TSH, T3, and T4 using Optical
+> Character Recognition (OCR) techniques. Another key purpose of the
+> project is to apply machine learning models to predict hypertension
+> status and to evaluate potential health risks across three independent
+> domains: cardiovascular risk, metabolic complication risk, and
+> thyroid-related complication risk. These risk outcomes are presented
+> in categorized levels (Low, Medium, High) to ensure interpretability
+> and to support user understanding without replacing professional
+> medical diagnosis. Additionally, the project aims to provide a secure
+> and centralized platform for managing personal health records. Through
+> the integration of cloud-based authentication and database services,
+> ThyroCheck allows users to securely store, track, and review
+> historical thyroid reports, hypertension predictions, and multi-domain
+> risk assessments. Overall, the purpose of this project is to enhance
+> early health awareness, support informed decision-making, and improve
+> accessibility to intelligent, technology driven healthcare
+> decision-support solutions.
+
+#### Objective
+
+-   To Purpose a Preprocessing Method for Thyroid Hormonal dataset due
+    to noise imaging.
+
+-   To Propose a classification method to detect the patient as
+    hypertensive or non-hypertensive and analyze the risk, issue was
+    accurate identification.
+
+-   To Propose an automatic report generation method the reason was
+    manual interpretation.
+
+#### Existing Solution
+
+> Currently, there are several digital health applications and systems
+> that assist patients in monitoring thyroid-related health and managing
+> laboratory reports. Many mobile applications focus on tracking thyroid
+> hormone levels or storing medical records, but they usually require
+> manual input of laboratory data, which is time-consuming and prone to
+> errors. Some platforms provide basic visualization of lab trends, but
+> they do not offer automated interpretation or risk assessment for
+> users. Other existing solutions focus on hypertension monitoring using
+> wearable devices or manual data entry but rarely integrate thyroid
+> hormone data into their analysis. Similarly, while some
+>
+> online healthcare portals offer risk calculators for cardiovascular or
+> metabolic conditions, these tools are often generic, not personalized,
+> and not integrated with real thyroid lab reports.
+>
+> Moreover, most current systems do not provide multi-domain risk
+> predictions in a single platform, nor do they generate comprehensive,
+> downloadable reports for the user. Integration of OCR for automatic
+> extraction of lab values and machine learning for predictive analysis
+> is largely absent in existing solutions, limiting usability and
+> accuracy.
+>
+> In summary, existing solutions either focus on a single aspect of
+> patient health, require manual data handling, or do not combine
+> thyroid analysis with hypertension prediction and multi-domain risk
+> assessment, leaving a significant gap for a fully integrated,
+> intelligent, and mobile-based decision- support system.
+
+#### Proposed Solution
+
+> To address the limitations of existing systems, this project proposes
+> a mobile-based intelligent healthcare decision-support system that
+> integrates Optical Character Recognition (OCR), Machine Learning (ML),
+> and cloud-based data management. The solution enables users to
+> automatically extract thyroid hormone values (TSH, T3, T4) from
+> uploaded or scanned laboratory reports and predicts whether a patient
+> is hypertensive or non-hypertensive. In addition, ThyroCheck evaluates
+> potential health risks across three independent domains:
+> cardiovascular risk, metabolic complication risk, and thyroid-related
+> complication risk, presenting results in Low, Medium, or High
+> categories for clarity and interpretability.
+>
+> ThyroCheck is implemented as a cross-platform React Native mobile
+> application, allowing users to securely sign up and log in through
+> Firebase Authentication. Users can upload or capture laboratory
+> reports in image or PDF format, which are processed on a Python-based
+> backend. OCR techniques extract numerical values, which are then
+> preprocessed and fed into trained machine learning models to generate
+> predictions and multi-domain risk assessments.
+
+# Chapter 2: Software Requirement Specification {#chapter-2-software-requirement-specification .unnumbered}
+
+### Introduction
+
+##### Purpose
+
+> The purpose of this Software Requirement Specification (SRS) is to
+> clearly define the functional and non-functional requirements of the
+> ThyroCheck mobile-based intelligent health assessment system.
+> ThyroCheck is designed to assist users in predicting whether a patient
+> is hypertensive or non-hypertensive based on thyroid laboratory data
+> and to evaluate potential health risks across three independent
+> domains: cardiovascular, metabolic, and thyroid-related complications.
+>
+> ThyroCheck aims to simplify the interpretation of thyroid laboratory
+> reports by automatically extracting hormone values (TSH, T3, T4) using
+> OCR techniques, predicting hypertension status through machine
+> learning models, and providing multi-domain risk assessments in Low,
+> Medium, or High categories. Additionally, it ensures secure storage of
+> user data, generates comprehensive PDF reports, and supports users in
+> making informed health-related decisions as a decision-support tool
+> while maintaining ethical and privacy standards.
+
+##### Scope
+
+> The scope of the proposed system includes the following:
+
+-   Development of a **cross-**platform mobile application using **React
+    Native** for analyzing thyroid laboratory reports.
+
+-   Implementation of secure user authentication and account management
+    through **Firebase**
+
+> Authentication.
+
+-   Automatic extraction of thyroid hormone values (TSH, T3, T4) from
+    uploaded or scanned images and **PDF reports** using OCR techniques.
+
+-   Prediction of the user's hypertension status (hypertensive or
+    non-hypertensive) through trained **machine learning models**.
+
+-   Assessment of **multi-domain health risks**, specifically:
+
+    -   Cardiovascular risk
+
+    -   Metabolic complication risk
+
+    -   Thyroid-related complication risk
+
+-   Presentation of risk levels in **Low, Medium, or High categories**
+    for better interpretability.
+
+-   Generation of comprehensive PDF reports summarizing extracted
+    values, hypertension prediction, and domain-specific risk levels.
+
+-   **Secure cloud storage** of user data, reports, and prediction
+    results using **Firebase Cloud Firestore.**
+
+-   Provision of a **decision-support platform** without functioning as
+    a medical diagnostic tool, ensuring ethical compliance and data
+    privacy.
+
+> ThyroCheck focuses on providing **early health awareness and
+> personalized insights**, enabling users to make informed
+> health-related decisions. It does not replace clinical diagnosis or
+> treatment but serves as an intelligent support tool for thyroid and
+> hypertension monitoring.
+
+##### Definitions, acronyms, and abbreviations Definitions: -
+
+-   **TSH (Thyroid Stimulating Hormone):** A hormone that regulates the
+    production and release of thyroid hormones.
+
+-   **T3 (Triiodothyronine):** A thyroid hormone responsible for
+    regulating metabolism and energy levels.
+
+-   **T4 (Thyroxine):** A thyroid hormone that helps control metabolic
+    processes in the body.
+
+-   **Hypertension:** A condition in which blood pressure remains
+    persistently higher than normal levels.
+
+-   **Optical Character Recognition (OCR):** A technology used to
+    extract readable text from images or scanned documents.
+
+-   **Machine Learning (ML):** A computational approach that enables
+    systems to learn from data and make predictions.
+
+-   **Artificial Intelligence (AI):** The capability of machines to
+    perform tasks that normally require human intelligence.
+
+-   **Firebase Authentication:** A service used to securely manage user
+    login and access control.
+
+-   **Firebase Cloud Firestore:** A cloud-based database used to store
+    and manage application data.
+
+-   **Decision-Support System:** A system designed to assist users in
+    decision-making without providing medical diagnosis.
+
+-   **Cardiovascular Risk:** The likelihood of developing heart or blood
+    vessel-related complications.
+
+-   **Metabolic Complication Risk:** The likelihood of developing
+    metabolic disorders.
+
+-   **Thyroid-Related Complication Risk:** The likelihood of developing
+    complications related to thyroid dysfunction.
+
+-   **React Native:** A framework used to develop cross-platform mobile
+    applications using JavaScript and React.
+
+-   **Flask:** A lightweight Python web framework used to build backend
+    APIs.
+
+-   **Firebase:** A cloud-based platform providing authentication,
+    database, and backend services.
+
+-   **Cloud Firestore:** A NoSQL cloud database for storing and
+    synchronizing application data.
+
+-   **Application Programming Interface (API):** A set of rules that
+    enables communication between different software components.
+
+##### Acronyms: - {#acronyms-- .unnumbered}
+
+  -----------------------------------------------------------------------
+  **Acronym**       **Description**
+  ----------------- -----------------------------------------------------
+  AI                Artificial Intelligence
+
+  ML                Machine Learning
+
+  OCR               Optical Character Recognition
+
+  API               Application Programming Interface
+
+  PDF               Portable Document Format
+
+  SRS               Software Requirement Specification
+
+  UI                User Interface
+
+  UX                User Experience
+
+  DB                Database
+
+  DSS               Decision Support System
+
+  FYP               Final Year Project
+  -----------------------------------------------------------------------
+
+> []{#_bookmark19 .anchor}*Table 1 Acronyms*
+
+##### Abbreviations: - {#abbreviations-- .unnumbered}
+
++-----------------+----------------------------------------------------+
+| *               | **Description**                                    |
+| *Abbreviation** |                                                    |
++=================+====================================================+
+| TSH             | > Thyroid Stimulating Hormone                      |
++-----------------+----------------------------------------------------+
+| T3              | > Triiodothyronine                                 |
++-----------------+----------------------------------------------------+
+| T4              | > Thyroxine                                        |
++-----------------+----------------------------------------------------+
+| OCR             | > Optical Character Recognition                    |
++-----------------+----------------------------------------------------+
+| ML              | > Machine Learning                                 |
++-----------------+----------------------------------------------------+
+| AI              | > Artificial Intelligence                          |
++-----------------+----------------------------------------------------+
+| API             | > Application Programming Interface                |
++-----------------+----------------------------------------------------+
+| DB              | > Database                                         |
++-----------------+----------------------------------------------------+
+| NoSQL           | > Non-Relational Structured Query Language         |
++-----------------+----------------------------------------------------+
+| DSS             | > Decision Support System                          |
++-----------------+----------------------------------------------------+
+| PDF             | > Portable Document Format                         |
++-----------------+----------------------------------------------------+
+
+> []{#_bookmark20 .anchor}*Table 2 Abbreviations*
+
+# Overall description
+
+##### Product perspective
+
+> ThyroCheck is a self-contained mobile application built using React
+> Native. It integrates Google Firebase for secure user authentication
+> and cloud-based data storage, and a Python Flask backend for OCR
+> processing and machine learning model training and inference. The
+> machine learning models are trained as part of this project to predict
+> hypertension status and assess multi-domain health risks. ThyroCheck
+> is self-contained and does not rely on any other external software
+> systems. All the interfaces and characteristics are given as follows:
+
+##### System Interfaces
+
+-   Firebase Authentication for managing secure user accounts.
+
+-   Firebase Cloud Firestore for storing user profiles, extracted
+    thyroid report values, hypertension prediction results, multi-domain
+    risk assessments, and historical health records.
+
+-   Python Flask REST API for OCR processing, trained ML model
+    inference, and communication between the mobile app and backend
+    services.
+
+-   OCR Engine (Tesseract / EasyOCR) for extracting text from uploaded
+    or scanned thyroid laboratory reports.
+
+-   Machine Learning Models developed and trained within this project to
+    predict hypertension status and multi-domain health risks.
+
+```{=html}
+<!-- -->
+```
+-   []{#_bookmark24 .anchor}**User Interfaces** *(Screenshots of
+    interfaces are given in the User Manual in Chapter 5)*
+
+    -   **Role-based** access directing users to appropriate interfaces.
+
+##### Screens include:
+
+-   Login / Signup / Forgot Password
+
+-   Home Dashboard
+
+-   Upload or Scan Thyroid Report (Image / PDF)
+
+-   Extracted Report Values Display
+
+-   Hypertension Prediction Result (Hypertensive / Non-Hypertensive)
+
+-   Multi-Domain Risk Assessment (Cardiovascular, Metabolic, Thyroid-
+    related)
+
+-   Generated PDF Report View and Download
+
+-   User History and Saved Reports
+
+##### Hardware Interfaces
+
+-   Mobile devices running Android (and optionally iOS) operating
+    systems.
+
+-   Camera access for capturing thyroid laboratory reports.
+
+-   Internet connectivity required for cloud communication and backend
+    API access.
+
+##### Software Interfaces
+
+-   React Native Framework for cross-platform mobile development.
+
+-   Firebase SDK (Authentication and Cloud Firestore).
+
+-   Python Flask backend with REST APIs for ML inference and OCR
+    processing.
+
+-   OCR Libraries (Tesseract / EasyOCR).
+
+-   Machine Learning Libraries (Scikit-learn, NumPy, Pandas).
+
+-   []{#_bookmark27 .anchor}PDF Generation Library (ReportLab).
+
+##### Communication Interfaces
+
+-   HTTPS protocol for secure communication between ThyroCheck and
+    backend.
+
+-   Firebase secure channels for real-time synchronization and
+    authentication.
+
+##### Memory
+
+-   ThyroCheck must run efficiently on devices with at least 4 GB RAM.
+
+-   Cloud storage is managed dynamically via Firebase Cloud
+    Firestore**.**
+
+##### Operations
+
+-   Standard mobile app installation.
+
+-   No specialized operations required by the user.
+
+-   Automatic data backup and synchronization are managed by Firebase.
+
+##### Site Adaptation Requirements
+
+-   No special site adaptations are required.
+
+-   ThyroCheck is cloud**-**hosted, enabling access from any geographic
+    region with intern
+
+# Architectural Diagram: {#architectural-diagram .unnumbered}
+
+![](media/image2.jpeg){width="6.4435159667541555in"
+height="7.757916666666667in"}
+
+> []{#_bookmark32 .anchor}*Figure 1 Product Perspective Architectural
+> Diagram*
+
+##### Product functions
+
+> All the functional requirements for our project are defined below:
+
+-   **Module**: User Registration
+
++------------+--------------+---------+------------+-----------------+
+| **ID:**    | UR_01(User)  |         |            |                 |
++============+==============+=========+============+=================+
+| **Name:**  | User         |         |            |                 |
+|            | Registration |         |            |                 |
++------------+--------------+---------+------------+-----------------+
+| **Des      | **Input**    | > **O   | > **Requ   | > **Basic Work  |
+| cription** |              | utput** | irements** | > Flow**        |
++------------+--------------+---------+------------+-----------------+
+| > Users    | User inputs  | After   | Must enter | Credential      |
+| > should   | the          | verif   | valid      | input →         |
+| > be able  | credentials  | ication | c          | Automatic email |
+| > to       | for account  | and     | redentials | verification →  |
+| > register | creation     | vali    | and verify | Verification →  |
+| > with     |              | dation, | email      | User registered |
+| > email    |              | a new   |            |                 |
+| > and      |              | user is |            |                 |
+| >          |              | formed. |            |                 |
+|  password. |              |         |            |                 |
++------------+--------------+---------+------------+-----------------+
+
+> []{#_bookmark34 .anchor}*Table 3 FR User Registration*
+
+-   **Module:** User Login
+
++------------+--------------+---------+------------+-----------------+
+| **ID:**    | UL_01 (User) |         |            |                 |
++============+==============+=========+============+=================+
+| **Name:**  | User Login   |         |            |                 |
++------------+--------------+---------+------------+-----------------+
+| **Des      | **Input**    | > **O   | > **Requ   | > **Basic Work  |
+| cription** |              | utput** | irements** | > Flow**        |
++------------+--------------+---------+------------+-----------------+
+| > Users    | User inputs  | User    | Must enter | Credential      |
+| > should   | the          | logins  | valid      | Input by the    |
+| > be able  | credentials  | the     | c          | user → Check if |
+| > to login | for account  | app.    | redentials | the user is     |
+| > with     | login.       |         | and must   | validated or    |
+| > verified |              |         | be a       | not             |
+| > email    |              |         | verified   |                 |
+| > and      |              |         | user.      | → Login         |
+| >          |              |         |            | (Verified) /    |
+|  password. |              |         |            | Account         |
+|            |              |         |            | Verification    |
+|            |              |         |            | Notification.   |
++------------+--------------+---------+------------+-----------------+
+
+> []{#_bookmark35 .anchor}*Table 4 FR User Login*
+
+-   **Module:** Password Reset
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_01       |        |           |                   |
+|             | (User)      |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Password    |        |           |                   |
+|             | Reset       |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Users     | User clicks | A mail | User must | > User presses    |
+| > should be | on "Forgot  | verifi | be a      | > "Forgot         |
+| > able to   | Password"   | cation | verified  | > Password" /     |
+| > reset the |             | is     | user.     | > "Reset          |
+| > password. | / "Reset    | sent   |           | > Password" →     |
+|             | Password"   | with   |           | > Verification    |
+|             |             | the    |           | > link with reset |
+|             |             | link   |           | > functionality   |
+|             |             | to     |           | > sent to the     |
+|             |             | reset  |           | > user → User     |
+|             |             | the    |           | > Password        |
+|             |             | pa     |           | > updated.        |
+|             |             | ssword |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark36 .anchor}*Table 5 FR Password Reset*
+
+-   **Module:** Report Upload
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_01       |        |           |                   |
+|             | (User)      |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Report      |        |           |                   |
+|             | Upload      |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Users     | Report file | A mail | Report    | > User selects    |
+| > should be | (PDF/Image) | verifi | stored in | > file → Click    |
+| > able to   |             | cation | database  | > upload → System |
+| > upload    |             | is     |           | > validates       |
+| > PDF or    |             | sent   |           | >                 |
+| > image     |             | with   |           | > → Report saved  |
+| > reports.  |             | the    |           |                   |
+|             |             | link   |           |                   |
+|             |             | to     |           |                   |
+|             |             | reset  |           |                   |
+|             |             | the    |           |                   |
+|             |             | pa     |           |                   |
+|             |             | ssword |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark37 .anchor}*Table 6 FR Report Upload*
+
+-   **Module:** Scan Report
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | RP_02       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Scan Report |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Users     | Camera      | Image  | Camera    | > User opens      |
+| > should be | Image or    | saved  | access    | > camera →        |
+| > able to   | PDF         | for    | and       | > Captures image  |
+| > capture   |             | proc   | Interent  | > → Confirms →    |
+| > thyroid   |             | essing | required  | > Image saved     |
+| > report    |             |        |           |                   |
+| > images    |             |        |           |                   |
+| > using     |             |        |           |                   |
+| > camera.   |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark38 .anchor}*Table 7 FR Scan Report*
+
+-   **Module:** OCR Extraction
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | EX_01       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Extract     |        |           |                   |
+|             | Values      |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Extract   | Uploa       | Ext    | OCR       | > System applies  |
+| > TSH, T3,  | ded/Scanned | racted | engine    | > OCR → Extracts  |
+| > and T4    | report      | h      | required  | > hormone values  |
+| > values    |             | ormone |           | > → Values saved  |
+| > from      |             | values |           | > for ML          |
+| > report    |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark39 .anchor}*Table 8 FR OCR Extraction*
+
+-   **Module:** OCR Error Handling
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | EX_02       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Flag OCR    |        |           |                   |
+|             | Errors      |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Detect    | OCR Result  | Error  | Internet  | > System checks   |
+| > errors in |             | m      | Required  | > OCR → If error  |
+| > OCR       |             | essage |           | > → Notify user → |
+| >           |             | /      |           | > User re-uploads |
+|  extraction |             | Retry  |           |                   |
+| > and       |             | prompt |           |                   |
+| > notify    |             |        |           |                   |
+| > user.     |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark40 .anchor}*Table 9 FR OCR Error Handling*
+
+-   **Module:** Hypertension Prediction
+
++-------------+-------------+---------+-----------+-------------------+
+| **ID:**     | ML_01       |         |           |                   |
++=============+=============+=========+===========+===================+
+| **Name:**   | Predict     |         |           |                   |
+|             | H           |         |           |                   |
+|             | ypertension |         |           |                   |
++-------------+-------------+---------+-----------+-------------------+
+| **De        | **Input**   | > **O   | > **Requi | > **Basic Work    |
+| scription** |             | utput** | rements** | > Flow**          |
++-------------+-------------+---------+-----------+-------------------+
+| > Predict   | Extracted   | Hyper   | ML model  | Feed values to ML |
+| > if the    | hormone     | tensive | trained   | model             |
+| > user is   | values,     |         | and       |                   |
+| > h         | demographic | / non-  | internet  | → Predict → Store |
+| ypertensive | info        | hyper   | required  | result            |
+| > or        |             | tensive |           |                   |
+| > non-h     |             |         |           |                   |
+| ypertensive |             |         |           |                   |
++-------------+-------------+---------+-----------+-------------------+
+
+> []{#_bookmark41 .anchor}*Table 10 FR Hypertension Prediction*
+
+-   **Module:** Cardiovascular Risk Assessment
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | ML_02       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Car         |        |           |                   |
+|             | diovascular |        |           |                   |
+|             | Risk        |        |           |                   |
+|             | Prediction  |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Assess    | Hormone     | Low /  | Trained   | > ML model        |
+| > car       | values,     | Medium | ML model  | > evaluates →     |
+| diovascular | d           | / High | required  | > Risk level      |
+| > risk      | emographics |        |           | > displayed →     |
+| > based on  |             |        |           | > Stored in       |
+| > extracted |             |        |           | > Firebase        |
+| > values    |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark42 .anchor}*Table 11 FR Cardiovascular Risk Assessment*
+
+-   **Module:** Metabolic Risk Assessment
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | ML_03       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Metabolic   |        |           |                   |
+|             | Risk        |        |           |                   |
+|             | Prediction  |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Assess    | Hormone     | Low /  | Trained   | > ML model        |
+| > Metabolic | values,     | Medium | ML model  | > evaluates →     |
+| > risk      | d           | / High | required  | > Risk level      |
+| > based on  | emographics |        |           | > displayed →     |
+| > extracted |             |        |           | > Stored in       |
+| > values    |             |        |           | > Firebase        |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark43 .anchor}*Table 12 FR Metabolic Risk Assessment*
+
+-   **Module:** Thyroid Risk Assessment
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | ML_04       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Thyroid     |        |           |                   |
+|             | Risk        |        |           |                   |
+|             | Prediction  |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Assess    | Hormone     | Low /  | Trained   | > ML model        |
+| > Thyroid   | values,     | Medium | ML model  | > evaluates →     |
+| > risk      | d           | / High | required  | > Risk level      |
+| > based on  | emographics |        |           | > displayed →     |
+| > extracted |             |        |           | > Stored in       |
+| > values    |             |        |           | > Firebase        |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark44 .anchor}*Table 13 FR Thyroid Risk Assessment*
+
+-   **Module:** PDF Report Generation
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_01       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Generate    |        |           |                   |
+|             | PDF Report  |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | **Ou   | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Generate  | Extracted   | PDF    | PDF       | > System          |
+| > PDF       | values and  | Report | library   | > generates PDF → |
+| >           | predictions |        | required  | > Stores in       |
+|  containing |             |        |           | > Firebase →      |
+| > extracted |             |        |           | > Ready to        |
+| > values    |             |        |           | > view/download   |
+| > and       |             |        |           |                   |
+| > p         |             |        |           |                   |
+| redictions. |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark45 .anchor}*Table 14 FR PDF Report Generation*
+
+-   **Module:** View and Download PDF Reports
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_02       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | View and    |        |           |                   |
+|             | Download    |        |           |                   |
+|             | PDF Reports |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Allows    | User        | Dis    | User      | > System verifies |
+| > users to  | request for | played | authen    | > user →          |
+| > access    | report      | or     | tication, | > Retrieves PDF   |
+| >           |             | down   | Firebase  | > from Firebase → |
+|  previously |             | loaded | Storage   | > Displays or     |
+| > generated |             | PDF    |           | > downloads       |
+| > PDF       |             | report |           | > report          |
+| > reports   |             |        |           |                   |
+| > and       |             |        |           |                   |
+| > download  |             |        |           |                   |
+| > them      |             |        |           |                   |
+| > securely. |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark46 .anchor}*Table 15 FR View & Download PDF Reports*
+
+-   **Module:** Store and Manage Historical Reports and Results
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_03       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Store and   |        |           |                   |
+|             | Manage      |        |           |                   |
+|             | Historical  |        |           |                   |
+|             | Reports and |        |           |                   |
+|             | Results     |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Maintains | Generated   | Ar     | Database  | > System stores   |
+| > a         | reports and | chived | system,   | > report data →   |
+| >           | prediction  | hist   | cloud     | > Updates history |
+|  historical | results     | orical | storage   | > records →       |
+| > record of |             | r      |           | > Allows          |
+| > uploaded  |             | eports |           | > retrieval when  |
+| > reports,  |             |        |           | > requested       |
+| > p         |             |        |           |                   |
+| redictions, |             |        |           |                   |
+| > and       |             |        |           |                   |
+| > generated |             |        |           |                   |
+| > PDFs.     |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark47 .anchor}*Table 16 FR Store and Manage Historical
+> Reports and Results*
+
+-   **Module:** Securely Store User Data in Firebase
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_04       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Securely    |        |           |                   |
+|             | Store User  |        |           |                   |
+|             | Data in     |        |           |                   |
+|             | Firebase    |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Ensures   | User        | Enc    | Firebase  | > System encrypts |
+| > user data | personal    | rypted | Authen    | > data → Stores   |
+| > is        | and medical | user   | tication, | > data in         |
+| > securely  | data        | data   | Firebase  | > Firebase →      |
+| > stored    |             | stored | Database  | > Confirms secure |
+| > and       |             | in     |           | > storage         |
+| > protected |             | Fi     |           |                   |
+| > using     |             | rebase |           |                   |
+| > Firebase  |             |        |           |                   |
+| > services. |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark48 .anchor}*Table 17 FR Secure Store User Data in
+> Firebase*
+
+-   **Module:** Handle Multiple Users Securely
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_06       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Handle      |        |           |                   |
+|             | Multiple    |        |           |                   |
+|             | Users       |        |           |                   |
+|             | Securely    |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Manages   | Multiple    | Secure | Session   | > User sessions   |
+| >           | user        | and    | ma        | > validated →     |
+|  concurrent | requests    | is     | nagement, | > Requests        |
+| > access by |             | olated | authe     | > processed       |
+| > multiple  |             | user   | ntication | > securely → Data |
+| > users     |             | se     | system    | > access isolated |
+| > while     |             | ssions |           |                   |
+| >           |             |        |           |                   |
+| maintaining |             |        |           |                   |
+| > data      |             |        |           |                   |
+| > security  |             |        |           |                   |
+| > and       |             |        |           |                   |
+| >           |             |        |           |                   |
+|  isolation. |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark49 .anchor}*Table 18 FR Handle Multiple Users Securely*
+
+-   **Module:** Dynamically Manage Cloud Storage Usage
+
++-------------+-------------+--------+-----------+-------------------+
+| **ID:**     | PR_07       |        |           |                   |
++=============+=============+========+===========+===================+
+| **Name:**   | Dynamically |        |           |                   |
+|             | Manage      |        |           |                   |
+|             | Cloud       |        |           |                   |
+|             | Storage     |        |           |                   |
+|             | Usage       |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+| **De        | **Input**   | > **Ou | > **Requi | > **Basic Work    |
+| scription** |             | tput** | rements** | > Flow**          |
++-------------+-------------+--------+-----------+-------------------+
+| > Monitors  | Storage     | Opt    | Cloud     | > System monitors |
+| > and       | usage data  | imized | storage   | > usage → Applies |
+| > optimizes |             | s      | service,  | > limits or       |
+| > cloud     |             | torage | m         | > cleanup →       |
+| > storage   |             | allo   | onitoring | > Updates storage |
+| > to        |             | cation | tools     | > status          |
+| > prevent   |             |        |           |                   |
+| > overuse   |             |        |           |                   |
+| > and       |             |        |           |                   |
+| > ensure    |             |        |           |                   |
+| > av        |             |        |           |                   |
+| ailability. |             |        |           |                   |
++-------------+-------------+--------+-----------+-------------------+
+
+> []{#_bookmark50 .anchor}*Table 19 FR Dynamically Manage Cloude Storage
+> Usage*
+
+##### User characteristics
+
+> This subsection describes the general characteristics of the intended
+> users of the ThyroCheck mobile application. The system is designed to
+> be used by a diverse group of users with varying educational
+> backgrounds, technical skills, and experience levels.
+>
+> The primary users of the system are patients who wish to analyze
+> thyroid laboratory reports and receive health-related insights. These
+> users may have basic to moderate educational backgrounds and limited
+> technical expertise. Therefore, the application is designed with a
+> simple and user- friendly interface that requires minimal technical
+> knowledge to operate.
+>
+> Users are expected to have basic familiarity with smartphones,
+> including the ability to install applications, upload images or PDF
+> files, and navigate through mobile app screens. No prior medical or
+> technical expertise is required to use the system effectively.
+>
+> Secondary users include system administrators who manage backend
+> services, data storage, and system monitoring. Administrators are
+> expected to have a higher level of technical expertise, including
+> experience with cloud services, databases, and system maintenance.
+>
+> Overall, the system accommodates users with varying levels of
+> experience by providing clear instructions, error messages, and guided
+> workflows to ensure ease of use and accessibility.
+
+##### Constraints
+
+> This subsection provides a general description of the constraints and
+> dependencies that may limit the developer's design and implementation
+> choices for the **ThyroCheck** system. These constraints must be
+> considered throughout the system development lifecycle.
+
+##### Regulatory Policies {#regulatory-policies .unnumbered}
+
+> The system shall comply with applicable data protection and privacy
+> regulations. User medical data and personal information shall be
+> handled securely, ensuring confidentiality and ethical use. Access to
+> sensitive information shall be restricted to authorized users only.
+
+##### Hardware Limitations {#hardware-limitations .unnumbered}
+
+> The application shall operate on standard Android and iOS mobile
+> devices with limited processing power and memory. Heavy computational
+> tasks such as OCR processing and machine learning predictions shall be
+> handled on the server side to minimize device resource usage.
+
+##### Interfaces to Other Applications {#interfaces-to-other-applications .unnumbered}
+
+> The system shall integrate with external services including Firebase
+> Authentication, Firebase Database, Firebase Cloud Storage, and
+> notification services. OCR and machine learning modules shall
+> interface with backend APIs to process uploaded reports and return
+> results to the mobile application.
+
+##### Parallel Operation {#parallel-operation .unnumbered}
+
+> The system shall support multiple users accessing the application
+> simultaneously. Parallel operations such as concurrent report uploads,
+> predictions, and PDF generation shall be managed securely without data
+> conflicts or performance degradation.
+
+##### Audit Functions {#audit-functions .unnumbered}
+
+> The system shall maintain audit logs for critical operations including
+> user authentication, report uploads, data access, predictions, and
+> report downloads. These logs shall assist in monitoring system usage,
+> detecting anomalies, and supporting maintenance activities.
+
+##### Control Functions {#control-functions .unnumbered}
+
+> Administrative control functions shall be provided to manage user
+> access, monitor system activity, and oversee storage usage. Control
+> mechanisms shall allow administrators to respond to system errors,
+> high storage utilization, or abnormal user behavior.
+
+##### Higher-Order Language Requirements {#higher-order-language-requirements .unnumbered}
+
+> The system shall be developed using high-level programming languages
+> and frameworks such as **JavaScript (React Native)** for the mobile
+> application and **Python** for machine learning components. Backend
+> services shall use modern, scalable technologies.
+
+##### Signal Handshake Protocols {#signal-handshake-protocols .unnumbered}
+
+> The system shall rely on standard network communication protocols for
+> data exchange between the mobile application and backend services.
+> Proper request-response mechanisms shall be implemented to ensure
+> reliable data transmission and synchronization.
+
+##### Reliability Requirements {#reliability-requirements .unnumbered}
+
+> The system shall ensure high availability and consistent operation.
+> Failures such as network interruptions or service downtime shall be
+> handled gracefully, with appropriate user notifications and recovery
+> mechanisms to prevent data loss.
+
+##### Assumptions and dependencies
+
+> This subsection of the SRS should list each of the factors that affect
+> the requirements stated in the SRS. These factors are not design
+> constraints on the software but are, rather, any changes to them that
+> can affect the requirements in the SRS.
+
+##### Apportioning of requirements
+
+> This subsection of the SRS should identify requirements that may be
+> delayed until future versions of ThyroCheck.
+
+# Specific requirements
+
+> In this section, all the functional and non-functional requirements
+> have been mentioned as to verify that all ThyroCheck actually
+> satisfies the functionality of the product. These requirements are
+> mentioned and discussed below:
+
+##### Functional Requirements
+
+> The specific features and the capabilities that our system must
+> possess to function are as follows:
+
+-   User sign-up with email and password
+
+-   User sign-in securely
+
+-   Password reset for forgotten accounts
+
+-   User Provides Smoking Status
+
+-   Upload thyroid reports (PDF or image)
+
+-   Validate uploaded or captured report quality
+
+-   Extract TSH, T3, and T4 values using OCR
+
+-   Flag OCR errors and prompt for re-upload
+
+-   Store extracted data for ML processing
+
+-   Predict hypertension status using trained ML model
+
+-   Assess cardiovascular risk (Low/Medium/High)
+
+-   Assess metabolic complication risk (Low/Medium/High)
+
+-   Assess thyroid-related complication risk (Low/Medium/High)
+
+-   Store prediction results in Firebase
+
+-   Generate PDF report with values and predictions
+
+-   View and download PDF reports
+
+-   Store and manage historical reports and results
+
+-   Securely store user data in Firebase
+
+-   Encrypt data during transmission and storage
+
+-   Notify users when PDF report is ready
+
+-   Notify users of OCR or upload errors
+
+-   Efficient OCR and ML processing on mobile devices
+
+-   Handle multiple users securely
+
+-   Dynamically manage cloud storage usage
+
+##### Non-functional Requirements
+
+> Non-functional requirements define the quality attributes and
+> constraints of ThyroCheck. These requirements describe how ThyroCheck
+> performs its functions rather than what functions it performs. The
+> following non-functional requirements are identified for the
+> ThyroCheck mobile application.
+
+-   **Usability**
+
+> ThyroCheck shall be designed to ensure ease of use for all users,
+> including non-technical individuals. The user interface shall be
+> intuitive, simple, and consistent across all screens. Clear
+> instructions, readable fonts, and meaningful icons shall be provided
+> to enhance user experience. The application shall require minimal user
+> training and allow users to complete tasks such as report upload,
+> viewing results, and downloading PDF reports with minimal effort
+
+-   **Reliability**
+
+> ThyroCheck shall operate reliably under normal and peak usage
+> conditions. It shall ensure accurate OCR extraction, correct machine
+> learning predictions, and consistent PDF generation. ThyroCheck shall
+> handle unexpected failures such as network issues or server errors
+> gracefully by displaying appropriate error messages and allowing users
+> to retry operations without data loss.
+
+-   **Performance**
+
+> ThyroCheck shall provide acceptable response times for all operations.
+> Report uploads, OCR processing, machine learning predictions, and PDF
+> generation shall be completed within a reasonable time frame.
+> ThyroCheck shall efficiently handle multiple concurrent users without
+>
+> significant performance degradation. Backend services shall be
+> optimized to ensure smooth and responsive operation of the mobile
+> application.
+
+-   **Design Constraints**
+
+> ThyroCheck shall be developed using React Native for the mobile
+> application and Firebase for authentication, database, and cloud
+> storage services. Machine learning models shall be implemented using
+> Python-based frameworks. ThyroCheck must comply with mobile platform
+> constraints and available hardware resources. Internet connectivity is
+> required for core system functionalities such as report upload and
+> data processing.
+
+-   **Portability**
+
+> ThyroCheck shall be portable across multiple platforms. The mobile
+> application shall support both Android and iOS devices. Backend
+> services shall be cloud-based to allow deployment flexibility.
+> ThyroCheck shall not be dependent on a specific device configuration
+> and shall function correctly on different screen sizes and operating
+> system versions.
+
+-   **Maintainability**
+
+> ThyroCheck shall be modular and well-structured to facilitate future
+> updates and maintenance. Code shall follow standard programming
+> practices and be properly documented. ThyroCheck shall allow easy
+> integration of improved machine learning models, additional risk
+> assessments, or new features without major architectural changes.
+
+-   **License Agreement**
+
+> ThyroCheck shall use licensed or open-source software components in
+> compliance with their respective license agreements. Any third-party
+> libraries, frameworks, or APIs used in ThyroCheck shall be properly
+> acknowledged. The application shall not violate intellectual property
+> rights and shall adhere to relevant legal and ethical standards.
+
+# Chapter 3: Use Case Analysis {#chapter-3-use-case-analysis .unnumbered}
+
+> All the use cases are based on the roles available in the app and as
+> the app have roles with common functionalities, an advanced version of
+> use cases (scenarios) have been provided here according to the roles.
+
+-   User Registration Use Case Diagram.
+
+![](media/image3.png){width="6.890540244969379in"
+height="1.4442705599300087in"}
+
+> []{#_bookmark68 .anchor}*Figure 2 User Registration Use Case Diagram*
+
+-   User Registration Use Case Diagram detail table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_01                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    User Registration        
+
+  **Description**      A new user can register  
+                       on the app for being a   
+                       verified user.           
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System                   
+
+  **Pre-Condition**    Must enter valid details 
+                       and must be connected to 
+                       the internet.            
+
+  **Post-Condition**   Gets verification email  
+                       for verification         
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       User enters the          Details are verified and
+                       registration details and stored in Firebase Firestore
+                       submits                  and a confirmation email is
+                                                sent.
+
+  **Alternate Flow**   Notification for         
+                       registration failed is   
+                       sent.                    
+  --------------------------------------------------------------------------
+
+> []{#_bookmark69 .anchor}*Table 20 User Registration Use Case Diagram*
+
+-   User Login Use Case Diagram.
+
+![](media/image4.png){width="6.439057305336833in"
+height="2.6774989063867016in"}
+
+> []{#_bookmark70 .anchor}*Figure 3 User Login Use Case Diagram*
+
+-   User Login Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_02                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    User Login               
+
+  **Description**      A registered patient can 
+                       log in to the app to     
+                       access the dashboard of  
+                       app                      
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System                   
+
+  **Pre-Condition**    Must enter valid         
+                       credentials and must be  
+                       connected to the         
+                       internet.                
+
+  **Post-Condition**   Patient successfully     
+                       logged in and dashboard  
+                       is accessible.           
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       User enters the          System validates credentials
+                       credentials and submits  through Firebase access to
+                                                the dashboard is granted.
+
+  **Alternate Flow**   Notification for         
+                       registration failed is   
+                       sent.                    
+  --------------------------------------------------------------------------
+
+> []{#_bookmark71 .anchor}*Table 21 User Login Use Case Table*
+
+-   User Password Reset Use Case Diagram.
+
+![](media/image5.png){width="2.7739304461942256in"
+height="5.715937226596675in"}
+
+> []{#_bookmark72 .anchor}*Figure 4 User Password Reset Use Case
+> Diagram*
+
+-   User Password Reset Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_03                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    User Password Reset      
+
+  **Description**      A registered patient can 
+                       reset their password if  
+                       they forget it, using    
+                       their registered email   
+                       and receiving a reset    
+                       link.                    
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System, Firebase         
+                       Authentication, Email    
+                       Service                  
+
+  **Pre-Condition**    Patient must have a      
+                       registered email and be  
+                       connected to the         
+                       internet.                
+
+  **Post-Condition**   Patient successfully     
+                       resets the password and  
+                       can log in with the new  
+                       password.                
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       User enters the          System validates credentials
+                       credentials and submits  through Firebase access to
+                                                the dashboard is granted.
+
+  **Alternate Flow**   If email is invalid or   
+                       not registered, system   
+                       shows error notification 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark73 .anchor}*Table 22 User Password Reset Use Case Table*
+
+-   User Provides Smoking Status Use Case Diagram.
+
+![](media/image6.png){width="6.48787510936133in" height="1.38in"}
+
+> []{#_bookmark74 .anchor}*Figure 5 User Providing Smoking Status Use
+> Case Diagram*
+
+-   User Smoking Status Use Case Table
+
+> .
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_04                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    User Provides Smoking    
+                       Status.                  
+
+  **Description**      A registered patient     
+                       provides information     
+                       regarding their smoking  
+                       status, which will be    
+                       used for risk assessment 
+                       in ThyroCheck.           
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System                   
+
+  **Pre-Condition**    Patient must be logged   
+                       in and have a valid      
+                       account.                 
+
+  **Post-Condition**   Smoking status is        
+                       successfully stored for  
+                       further risk assessment. 
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient selects smoking  System validates input and
+                       status from options or   stores the smoking status in
+                       inputs manually.         the database.
+
+  **Alternate Flow**   If the input is invalid  
+                       or missing, ThyroCheck   
+                       prompts the patient to   
+                       provide valid smoking    
+                       status.                  
+  --------------------------------------------------------------------------
+
+> []{#_bookmark75 .anchor}*Table 23 User Smoking Status Use Case Table*
+
+-   Upload Thyroid Reports (PDF or image) Use Case Diagram.
+
+![](media/image7.png){width="6.421372484689414in"
+height="1.026874453193351in"}
+
+> []{#_bookmark76 .anchor}*Figure 6 Upload Thyroid Reports Use Case
+> Diagram*
+
+-   Upload Thyroid Reports (PDF or image).
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_05                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Upload Thyroid Report    
+
+  **Description**      A registered patient can 
+                       upload a thyroid         
+                       laboratory report in     
+                       image or PDF format to   
+                       the application for      
+                       further analysis.        
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System, Database System  
+
+  **Pre-Condition**    Patient must have a      
+                       registered email and be  
+                       connected to the         
+                       internet.                
+
+  **Post-Condition**   Thyroid report is        
+                       successfully uploaded    
+                       and stored in the        
+                       database for processing. 
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient selects upload   System validates the file
+                       option and chooses a     format and size.
+                       report file and uploads  
+                       (image/PDF).             
+
+  **Alternate Flow**   If the selected file     
+                       format is unsupported or 
+                       upload fails due to      
+                       connectivity issues,     
+                       ThyroCheck displays an   
+                       error notification.      
+  --------------------------------------------------------------------------
+
+> []{#_bookmark77 .anchor}*Table 24 Upload Thyroid Use Case Table*
+
+-   Flag OCR Errors and Prompt for re-upload Use Case Diagram.
+
+![](media/image8.png){width="6.854861111111111in"
+height="1.3526038932633422in"}
+
+> []{#_bookmark78 .anchor}*Figure 7 OCR Error & Prompt for Re-Uploading*
+
+-   Flag OCR Errors and Prompt for re-upload Use Case Table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_06                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    OCR Error and Prompt for 
+                       re-upload                
+
+  **Description**      ThyroCheck checks the    
+                       quality of the uploaded  
+                       or captured thyroid      
+                       report to ensure it is   
+                       suitable for OCR         
+                       processing.              
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System                   
+
+  **Pre-Condition**    Patient has uploaded or  
+                       captured a thyroid       
+                       report.                  
+
+  **Post-Condition**   Report is validated and  
+                       ready for OCR extraction 
+                       or flagged for           
+                       re-upload.               
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient uploads or       System checks image clarity,
+                       captures a thyroid       resolution, and format, If
+                       report.                  quality is sufficient,
+                                                report moves to OCR
+                                                extraction.
+
+  **Alternate Flow**   If report quality is     
+                       insufficient, ThyroCheck 
+                       flags the error and      
+                       prompts patient to       
+                       re-upload the report.    
+  --------------------------------------------------------------------------
+
+> []{#_bookmark79 .anchor}*Table 25 Flag OCR Error and Prompt for
+> Re-Uploading Use Case Table*
+
+-   Extract TSH, T3, and T4 values using OCR
+
+![](media/image9.png){width="7.094526465441819in" height="1.1875in"}
+
+> []{#_bookmark80 .anchor}*Figure 8 Extract TSH, T3 & T4 Value Using OCR
+> Use Case Diagram*
+
+-   Extract TSH, T3, and T4 values using OCR Use Case Table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_07                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Extract TSH, T3, and T4  
+                       values using OCR         
+
+  **Description**      ThyroCheck extracts      
+                       Thyroid hormone values   
+                       from the uploaded report 
+                       using OCR technology.    
+
+  **Primary Actor**    System                   
+
+  **Secondary Actor**  Patient                  
+
+  **Pre-Condition**    Report has passed        
+                       quality validation.      
+
+  **Post-Condition**   Thyroid hormone values   
+                       are stored in the        
+                       database for ML          
+                       processing.              
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient confirms report  System performs OCR to
+                       submission.              extract TSH, T3, T4 values.
+                                                Extracted values are stored
+                                                in the database for ML
+                                                processing.
+
+  **Alternate Flow**   If OCR fails or errors   
+                       are detected, ThyroCheck 
+                       prompts the patient to   
+                       re- upload the report.   
+  --------------------------------------------------------------------------
+
+> []{#_bookmark81 .anchor}*Table 26 Extract TSH, T3 & T4 Value using OCR
+> Use Case Table*
+
+-   Storing Data for ML Processing Use Case Diagram.
+
+![](media/image10.png){width="6.691767279090114in"
+height="1.9891666666666667in"}
+
+> []{#_bookmark82 .anchor}*Figure 9 Storing Data for ML Processing Use
+> Case Diagram*
+
+-   Storing Data for ML Processing Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_08                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Store Extracted Data for 
+                       ML Processing            
+
+  **Description**      ThyroCheck stores the    
+                       extracted thyroid        
+                       hormone values and       
+                       user-provided data for   
+                       machine learning         
+                       analysis                 
+
+  **Primary Actor**    System                   
+
+  **Secondary Actor**  Database System, ML      
+                       Model                    
+
+  **Pre-Condition**    Report data extracted    
+                       successfully via OCR.    
+
+  **Post-Condition**   Data stored in the       
+                       database and ready for   
+                       ML predictions           
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient completes report System stores extracted
+                       submission.              values and related user data
+                                                in database for ML
+                                                processing.
+
+  **Alternate Flow**   If storage fails,        
+                       ThyroCheck notifies the  
+                       patient and retries data 
+                       storage.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark83 .anchor}*Table 27 Storing Data for ML Processing Use
+> Case Table*
+
+-   Predict Hypertension Status Using ML Model Use Case Diagram.
+
+![](media/image11.png){width="6.445955818022747in" height="7.28in"}
+
+> []{#_bookmark84 .anchor}*Figure 10 Predict Hypertension Status Using
+> ML Model Use Case Diagram*
+
+-   Predict Hypertension Status Using ML Model Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_09                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Predict Hypertension     
+                       Status Using ML Model    
+                       Use Case                 
+
+  **Description**      ThyroCheck predicts the  
+                       patient's hypertension   
+                       status using a trained   
+                       machine learning model.  
+
+  **Primary Actor**    System                   
+
+  **Secondary Actor**  Patient, ML Model        
+
+  **Pre-Condition**    Thyroid report data and  
+                       user input successfully  
+                       stored.                  
+
+  **Post-Condition**   Hypertension status      
+                       predicted and saved for  
+                       report generation.       
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient submits data.    System runs ML model on
+                                                stored values and predicts
+                                                hypertension status,
+                                                Prediction stored for
+                                                generating report.
+
+  **Alternate Flow**   If ML prediction fails,  
+                       system retries           
+                       computation or alerts    
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark85 .anchor}*Table 28 Predict Hypertension Status Using ML
+> Model Use Case Table*
+
+-   Risk Assessment Use Case Diagram.
+
+![](media/image12.png){width="6.661650262467192in"
+height="4.839583333333334in"}
+
+> []{#_bookmark86 .anchor}*Figure 11 Risk Assessment Use Case Diagram*
+
+-   Risk Assessment Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_10                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Risk Assessment          
+
+  **Description**      ThyroCheck assesses      
+                       cardiovascular,          
+                       metabolic, and           
+                       thyroid-related risks    
+                       based on extracted data  
+                       and ML predictions.      
+
+  **Primary Actor**    System                   
+
+  **Secondary Actor**  Patient                  
+
+  **Pre-Condition**    Patient data and ML      
+                       predictions are          
+                       available.               
+
+  **Post-Condition**   Risk levels categorized  
+                       (Low, Medium, High) and  
+                       stored for report.       
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient submits data.    System calculates risk
+                                                levels for cardiovascular,
+                                                metabolic, and thyroid
+                                                complications. Results
+                                                stored for report
+                                                generation.
+
+  **Alternate Flow**   If data missing or       
+                       inconsistent, system     
+                       prompts patient to       
+                       provide missing info.    
+  --------------------------------------------------------------------------
+
+> []{#_bookmark87 .anchor}*Table 29 Risk Assessment Use Case Table*
+
+-   Generate PDF Report Use Case Diagram.
+
+![](media/image13.png){width="6.465725065616798in"
+height="1.9267705599300087in"}
+
+> []{#_bookmark88 .anchor}*Figure 12 PDF Report Use Case Diagram*
+
+-   Generate PDF Report Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_11                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Generate PDF Report with 
+                       Values and Predictions   
+
+  **Description**      ThyroCheck generates a   
+                       PDF report containing    
+                       extracted values, ML     
+                       predictions, and risk    
+                       assessments.             
+
+  **Primary Actor**    System                   
+
+  **Secondary Actor**  Patient                  
+
+  **Pre-Condition**    ML predictions and risk  
+                       assessments are          
+                       available.               
+
+  **Post-Condition**   PDF report successfully  
+                       generated and ready for  
+                       download.                
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient requests report. System compiles data,
+                                                predictions, and risk
+                                                assessments into PDF format.
+                                                PDF report stored and linked
+                                                to patient account.
+
+  **Alternate Flow**   If PDF generation fails, 
+                       system retries or alerts 
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark89 .anchor}*Table 30 Generate PDF Report Use Case Table*
+
+-   View and Download PDF Reports Use Case Diagram.
+
+![](media/image14.png){width="6.734341644794401in"
+height="1.9499989063867016in"}
+
+> []{#_bookmark90 .anchor}*Figure 13 View & Download PDF Reports Use
+> Case Diagram*
+
+-   View and Download Use Case Table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_12                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    View and Download PDF    
+                       Reports                  
+
+  **Description**      Patient can view or      
+                       download generated PDF   
+                       reports.                 
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  System                   
+
+  **Pre-Condition**    PDF report is generated  
+                       and stored.              
+
+  **Post-Condition**   Patient successfully     
+                       views or downloads the   
+                       report.                  
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient selects report   System retrieves PDF from
+                       to view/download.        storage and displays
+                                                download option. PDF
+                                                downloaded to patient
+                                                device.
+
+  **Alternate Flow**   If PDF unavailable or    
+                       download fails, system   
+                       displays error and       
+                       prompts retry.           
+  --------------------------------------------------------------------------
+
+> []{#_bookmark91 .anchor}*Table 31 View and Download Use Case Table*
+
+-   Notifying User PDF Report is ready Use Case Diagram.
+
+![](media/image15.png){width="6.606754155730534in" height="1.93875in"}
+
+> []{#_bookmark92 .anchor}*Figure 14 Notifying User PDF Report is ready
+> Use Case Diagram*
+
+-   Notifying User PDF Report Use Case Table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_13                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Notify Users When PDF    
+                       Report is Ready          
+
+  **Description**      ThyroCheck sends         
+                       notifications to         
+                       patients when their PDF  
+                       reports are generated    
+                       and ready for download.  
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  Notification System      
+
+  **Pre-Condition**    PDF report generated     
+                       successfully.            
+
+  **Post-Condition**   Patient receives         
+                       notification and can     
+                       download the report.     
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient waits for        System sends notification
+                       report.                  via app or email.
+                                                Notification status logged.
+
+  **Alternate Flow**   If notification fails,   
+                       system retries or alerts 
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark93 .anchor}*Table 32 Notifying User PDF Report is ready
+> Use Case Table*
+
+-   Storage and Historical Reports and Result Use Case Diagram.
+
+![](media/image16.png){width="6.814212598425197in"
+height="1.4095833333333334in"}
+
+> []{#_bookmark94 .anchor}*Figure 15 Storage and Historical Reports &
+> Results Use Case Diagram*
+
+-   Storage and Historical Reports and Result Use Case Table.
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_14                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Notify Users When PDF    
+                       Report is Ready          
+
+  **Description**      ThyroCheck sends         
+                       notifications to         
+                       patients when their PDF  
+                       reports are generated    
+                       and ready for download.  
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  Notification System      
+
+  **Pre-Condition**    PDF report generated     
+                       successfully.            
+
+  **Post-Condition**   Patient receives         
+                       notification and can     
+                       download the report.     
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient waits for        System sends notification
+                       report.                  via app or email.
+                                                Notification status logged.
+
+  **Alternate Flow**   If notification fails,   
+                       system retries or alerts 
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark95 .anchor}*Table 33 Storage and Historical Reports and
+> Result Use Case Table*
+
+-   Securely Store User Data Use Case Diagram.
+
+![](media/image17.png){width="6.485416666666667in"
+height="1.2468744531933509in"}
+
+> []{#_bookmark96 .anchor}*Figure 16 Securely Store User Data Use Case
+> Diagram*
+
+-   Securely Store User Data Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_15                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Securely Store User Data 
+                       in Firebase              
+
+  **Description**      ThyroCheck stores        
+                       patient data securely in 
+                       Firebase, ensuring       
+                       confidentiality and      
+                       integrity.               
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  Firebase System          
+
+  **Pre-Condition**    Patient logged in and    
+                       provides valid data.     
+
+  **Post-Condition**   Data stored securely     
+                       with encryption and      
+                       integrity check.         
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient provides data.   System validates data and
+                                                stores it securely in
+                                                Firebase.
+
+  **Alternate Flow**   If storage fails, system 
+                       retries or alerts        
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark97 .anchor}*Table 34 Securely Store User Data Use Case
+> Table*
+
+-   Handle Multiple Users Securely Data Use Case Diagram.
+
+![](media/image18.png){width="6.8932895888014in"
+height="2.1196872265966755in"}
+
+> []{#_bookmark98 .anchor}*Figure 17 Handle Multiple User Use Case
+> Diagram*
+
+-   Handle Multiple Users Securely Data Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_16                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Handle Multiple Users    
+                       Securely                 
+
+  **Description**      ThyroCheck manages       
+                       multiple users           
+                       concurrently, ensuring   
+                       secure authentication    
+                       and session management.  
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  Firebase System          
+
+  **Pre-Condition**    Users are registered and 
+                       logged in.               
+
+  **Post-Condition**   Sessions handled         
+                       securely, concurrent     
+                       users supported without  
+                       data loss.               
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient provides data.   System validates data and
+                                                stores it securely in
+                                                Firebase.
+
+  **Alternate Flow**   If storage fails, system 
+                       retries or alerts        
+                       patient.                 
+  --------------------------------------------------------------------------
+
+> []{#_bookmark99 .anchor}*Table 35 Handle Multiple Users Securely Data
+> Use Case Table*
+
+-   Manage Cloud Storage Use Case Diagram.
+
+![](media/image19.png){width="6.50859908136483in" height="2.465in"}
+
+> []{#_bookmark100 .anchor}*Figure 18 Manage Cloud Storage Use Case
+> Diagram*
+
+-   Manage Cloud Storage Use Case Table
+
+  --------------------------------------------------------------------------
+  **Use Case ID**      UC_17                    
+  -------------------- ------------------------ ----------------------------
+  **Use Case Name**    Dynamically Manage Cloud 
+                       Storage Usage            
+
+  **Description**      ThyroCheck monitors and  
+                       optimizes cloud storage  
+                       dynamically to ensure    
+                       efficient usage          
+
+  **Primary Actor**    Patient                  
+
+  **Secondary Actor**  Firebase Storage         
+
+  **Pre-Condition**    Patient logged in and    
+                       storage monitoring       
+                       enabled.                 
+
+  **Post-Condition**   Cloud storage            
+                       dynamically managed and  
+                       optimized automatically. 
+
+  **Basic Flow**       **Actor Action**         **System Action**
+
+                       Patient uploads or       System monitors storage
+                       deletes reports.         usage and dynamically
+                                                optimizes storage.Alerts
+                                                patient if storage near
+                                                limit and archives/deletes
+                                                unused data.
+
+  **Alternate Flow**   If storage optimization  
+                       fails, system retries or 
+                       notifies patient/admin.  
+  --------------------------------------------------------------------------
+
+> []{#_bookmark101 .anchor}*Table 36 Manage Cloud Storage Use Case
+> Table*
+
+### Chapter 4: Design {#chapter-4-design .unnumbered}
+
+#### ![](media/image20.jpeg){width="6.089589895013123in" height="7.98875in"}Architecture Diagram
+
+> []{#_bookmark104 .anchor}*Figure 19 Architecture Diagram*
+
+# ERD with data dictionary
+
+> There may be changes in data variables in time when implementing the
+> ML functionality in the second part of the FYP
+
+![](media/image21.png){width="6.442101924759405in"
+height="5.135624453193351in"}
+
+> []{#_bookmark106 .anchor}*Figure 20 ERD with Data Dictionary*
+
+# Data Flow diagram
+
+> []{#_bookmark108 .anchor}Data flow diagram includes two levels and
+> both of them are given below:
+
+##### The level 0
+
+![](media/image22.jpeg){width="6.5725437445319335in"
+height="2.1149989063867016in"}
+
+> []{#_bookmark110 .anchor}*Figure 21 Data Flow Diagram Level 0*
+
+# The level 1
+
+> The flow of information outside ThyroCheck is defined in this level as
+> shown below:
+
+![](media/image23.jpeg){width="5.822380796150481in"
+height="3.5749989063867016in"}
+
+> []{#_bookmark112 .anchor}*Figure 22 Data Flow Diagram Level 1*
+
+# Class Diagram
+
+![](media/image24.png){width="6.498305993000875in"
+height="6.756248906386702in"}
+
+> []{#_bookmark114 .anchor}*Figure 23 Class Diagram*
+
+# Activity Diagram
+
+> The Activity Diagrams are mentioned and in detail for every aspect of
+> the functionality of the application.
+
+-   User Registration Activity Diagram.
+
+![](media/image25.png){width="6.334657699037621in"
+height="5.582498906386702in"}
+
+> []{#_bookmark116 .anchor}*Figure 24 User Registration Activity
+> Diagram*
+
+-   User Login Activity Diagram.
+
+![](media/image26.png){width="5.849037620297463in" height="5.705in"}
+
+> []{#_bookmark117 .anchor}*Figure 25 User Login Activity Diagram*
+
+-   User Password Reset Activity Diagram.
+
+![](media/image27.png){width="5.654861111111111in" height="6.69375in"}
+
+> []{#_bookmark118 .anchor}*Figure 26 Password Reset Activity Diagram*
+
+-   User Provides Smoking Status Activity Diagram.
+
+![](media/image28.png){width="4.354226815398075in"
+height="5.009791119860018in"}
+
+> []{#_bookmark119 .anchor}*Figure 27 User Provide Smoking Status
+> Activity Diagram*
+
+-   Upload Thyroid Reports (PDF or image) Activity Diagram.
+
+![](media/image29.png){width="5.364788932633421in"
+height="5.381874453193351in"}
+
+> []{#_bookmark120 .anchor}*Figure 28 Upload Thyroid Report Upload
+> Activity Diagram*
+
+-   Flag OCR Errors and Prompt for re-upload Activity Diagram.
+
+![](media/image30.png){width="4.92034230096238in"
+height="4.978124453193351in"}
+
+> []{#_bookmark121 .anchor}*Figure 29 Flag OCR Error & Prompt for
+> Re-Upload Activity Diagram*
+
+-   Extract TSH, T3, and T4 values using OCR Activity Diagram
+
+![](media/image31.png){width="6.332405949256343in"
+height="7.137187226596676in"}
+
+> []{#_bookmark122 .anchor}*Figure 30 Extraction of TSH, T3 and T4
+> values using OCR*
+
+-   Risk Assessment Activity Diagram.
+
+![](media/image32.png){width="6.334262904636921in" height="6.85125in"}
+
+> []{#_bookmark123 .anchor}*Figure 31 Risk Assessment Diagram*
+
+-   Generate PDF Report Activity Diagram.
+
+![](media/image33.png){width="5.917880577427821in" height="6.3175in"}
+
+> []{#_bookmark124 .anchor}*Figure 32 Generate PDF Report Activity
+> Diagram*
+
+-   View and Download PDF Reports Activity Diagram.
+
+![](media/image34.png){width="5.5900656167979in" height="6.43125in"}
+
+> []{#_bookmark125 .anchor}*Figure 33 View and Download PDF Reports
+> Activity Diagram*
+
+-   Store and manage historical reports and results Activity Diagram
+
+![](media/image35.png){width="5.725141076115485in" height="5.625in"}
+
+> []{#_bookmark126 .anchor}*Figure 34 Store and Manage historical
+> Reports and Results Activity Diagram*
+
+-   Securely store user data in Firebase Activity Diagram
+
+> ![](media/image36.png){width="5.8970811461067365in"
+> height="5.90625in"}
+>
+> []{#_bookmark127 .anchor}*Figure 35 Securely Store Data in Firebase
+> Activity Diagram*
+
+-   Handle multiple users securely Activity Diagram
+
+> ![](media/image37.png){width="4.193676727909011in"
+> height="6.559998906386702in"}
+>
+> []{#_bookmark128 .anchor}*Figure 36 Handle Multiple users securely
+> Activity Diagram*
+
+-   Dynamically manage cloud storage usage Activity Diagram
+
+![](media/image38.png){width="4.645738188976378in"
+height="6.720728346456693in"}
+
+> []{#_bookmark129 .anchor}*Figure 37 Managing Cloud Storage Usage
+> Activity Diagram*
+
+# Sequence Diagram
+
+-   User Registration Sequence Diagram.
+
+![](media/image39.png){width="6.457876202974628in" height="5.215in"}
+
+> []{#_bookmark131 .anchor}*Figure 38 Sequence Diagram User
+> Registration*
+
+-   User Sign-in Sequence Diagram.
+
+![](media/image40.png){width="6.390639763779528in"
+height="4.199998906386702in"}
+
+> []{#_bookmark132 .anchor}*Figure 39 Sequence Diagram User Sign-In*
+
+-   User Password Reset Sequence Diagram.
+
+![](media/image41.png){width="6.437108486439195in"
+height="5.895833333333333in"}
+
+> []{#_bookmark133 .anchor}*Figure 40 Sequence Diagram Password Reset*
+
+-   User Provides Smoking Status Sequence Diagram.
+
+![](media/image42.png){width="6.137146762904637in"
+height="3.497811679790026in"}
+
+> []{#_bookmark134 .anchor}*Figure 41 Sequence Diagram Smoking Status*
+
+-   Upload thyroid reports (PDF or image)
+
+![](media/image43.png){width="6.260416666666667in"
+height="4.822916666666667in"}
+
+> []{#_bookmark135 .anchor}*Figure 42 Sequence Diagram Upload Thyroid
+> Reports*
+
+-   Validate uploaded or captured report quality
+
+![](media/image44.png){width="5.896754155730534in"
+height="3.6041666666666665in"}
+
+> []{#_bookmark136 .anchor}*Figure 43 Sequence Diagram Validate Uploaded
+> Capture Quality*
+
+-   Extract TSH, T3, T4 Value Sequence Diagram
+
+![](media/image45.png){width="6.402992125984252in" height="3.91375in"}
+
+> []{#_bookmark137 .anchor}*Figure 44 Sequence Diagram Extract TSH, T3 &
+> T4 Values*
+
+-   Risk Assessment Sequence Diagram.
+
+![](media/image46.png){width="6.44405293088364in"
+height="5.905520559930009in"}
+
+> []{#_bookmark138 .anchor}*Figure 45 Sequence Diagram Risk Assessment*
+
+-   Generate PDF report with values and predictions
+
+![](media/image47.png){width="6.452594050743657in"
+height="2.8332283464566927in"}
+
+> []{#_bookmark139 .anchor}*Figure 46 Sequence Diagram PDF Report
+> Generation*
+
+-   View and download PDF reports Sequence Diagram
+
+![](media/image48.png){width="6.460328083989501in" height="4.44in"}
+
+> []{#_bookmark140 .anchor}*Figure 47 Sequence Diagram View Download PDF
+> Report*
+
+-   Store and manage historical reports and results Sequence Diagram.
+
+![](media/image49.png){width="6.429347112860892in"
+height="4.869791119860017in"}
+
+> []{#_bookmark141 .anchor}*Figure 48 Sequence Diagram Store and Manage
+> Historical Reports and Results*
+
+-   Handle multiple users securely Sequence Diagram
+
+![](media/image50.png){width="6.177436570428696in"
+height="4.854166666666667in"}
+
+> []{#_bookmark142 .anchor}*Figure 49 Sequence Diagram Handle Multiple
+> Users*
+
+-   Dynamically manage cloud storage usage
+
+![](media/image51.png){width="6.4431758530183725in" height="4.485in"}
+
+> []{#_bookmark143 .anchor}*Figure 50 Sequence Diagram Dynamically
+> Manage Cloud Storage*
+
+# State Transition Diagram
+
+![](media/image52.png){width="6.164518810148731in"
+height="7.804270559930009in"}
+
+> []{#_bookmark144 .anchor}*Figure 51 State Transition Diagram*
+
+# Component Diagram
+
+![](media/image53.png){width="6.489089020122485in"
+height="4.765833333333333in"}
+
+> []{#_bookmark146 .anchor}*Figure 52 Component Diagram*
+
+# Deployment Diagram
+
+![](media/image54.png){width="6.435416666666667in" height="3.975in"}
+
+> []{#_bookmark148 .anchor}*Figure 53 Deployment Diagram*
+
+# Chapter 5: User Manual {#chapter-5-user-manual .unnumbered}
+
+> The user interface has been built using React Native with Expo Go,
+> which makes it easier to design and test the app. Later, the same
+> React Native code can be reused when building the full app with React
+> Native CLI. Following are the UI/UX pages (will be updated in the
+> future) for the app and the screen shots of the UI/UX are given below.
+
+# Login Page
+
+![](media/image55.jpeg){width="2.755423228346457in" height="6.125in"}
+
+> []{#_bookmark150 .anchor}*Figure 54 User Interface - Login Page*
+
+-   **Sign Up Page**
+
+> ![](media/image56.jpeg){width="3.5427351268591427in" height="7.875in"}
+
+# Homepage
+
+> *Figure 55 User Interface - Sign Up Page*
+>
+> ![](media/image57.jpeg){width="3.6106791338582678in"
+> height="7.628333333333333in"}
+> ![](media/image58.jpeg){width="3.598596894138233in"
+> height="7.959998906386701in"}
+>
+> []{#_bookmark152 .anchor}*Figure 56 User Interface - Home Page*
+
+# Profile Page
+
+![](media/image59.jpeg){width="3.314816272965879in"
+height="7.891248906386702in"}
+
+> []{#_bookmark153 .anchor}*Figure 57 User Interface - Profile Page*
+
+# Report Page
+
+![](media/image60.jpeg){width="3.523799212598425in"
+height="7.794165573053369in"}
+
+> []{#_bookmark154 .anchor}*Figure 58 User Interface - Report Page*
+
+### Password Reset Page
+
+![](media/image61.jpeg){width="3.4487226596675415in"
+height="7.628333333333333in"}
+
+> []{#_bookmark155 .anchor}*Figure 59 User Interface - Password Reset
+> Page*
+
+# References: {#references .unnumbered}
+
+-   Sommerville, I. (2016). Software Engineering (10th ed.). Pearson
+    Education.
+
+-   IEEE Computer Society. (1998). IEEE Recommended Practice for
+    Software Requirements Specifications (IEEE Std 830-1998).
+
+-   Forouzan, B. A. (2012). Data Communications and Networking (5th
+    ed.). McGraw-Hill.
+
+-   Smith, L. (2007). An overview of the Tesseract OCR engine.
+    Proceedings of the Ninth International Conference on Document
+    Analysis and Recognition (ICDAR).
+
+-   Firebase Documentation.
+
+-   Google LLC. Firebase Authentication and Firestore Documentation.
+
+-   React Native Documentation.
+
+-   Meta Platforms Inc. React Native Official Docs.
+
+-   Pedregosa, F., et al. (2011). Scikit-learn: Machine learning in
+    Python. Journal of Machine Learning Research, 12, 2825--2830.
+
+-   World Health Organization (WHO).
+
+-   Guidelines on Thyroid Disorders and Cardiovascular Risk Assessment.
+
+-   Kaggle Datasets.
+
+-   Thyroid Disease and Hormone Level Datasets.
+
+-   PlantUML Documentation.
+
+-   Open-source UML diagram generation tool
+
+# Appendix {#appendix .unnumbered}
+
+##### Appendix A: Functional Requirements Tables {#appendix-a-functional-requirements-tables .unnumbered}
+
+> This appendix contains detailed functional requirement specifications
+> for the ThyroCheck system, including user registration,
+> authentication, report upload, OCR processing, machine learning
+> predictions, risk assessment, and report generation. Each functional
+> requirement is documented using a standardized template consisting of
+> ID, name, description, actors, preconditions, postconditions, basic
+> flow, and alternate flow.
+
+##### Appendix B: Use Case Diagrams {#appendix-b-use-case-diagrams .unnumbered}
+
+> This appendix includes all PlantUML-based use case diagrams developed
+> for the ThyroCheck project. The diagrams visually represent
+> interactions between actors and the system for the following
+> functionalities:
+
+-   User Registration
+
+-   User Login
+
+-   Password Reset
+
+-   Upload Thyroid Lab Report
+
+-   Validate Report Quality
+
+-   OCR-based Extraction of TSH, T3, and T4
+
+-   OCR Error Handling and Re-upload
+
+-   User Health Attribute Input (Smoking Status, Hypertension Status)
+
+-   Store Extracted Data for ML Processing
+
+-   Hypertension Prediction using ML Model
+
+-   Risk Assessment (Cardiovascular, Metabolic, Thyroid-related)
+
+-   PDF Report Generation
+
+-   View and Download Reports
+
+-   Manage Historical Reports
+
+-   Handle Multiple Users Concurrently
+
+> All diagrams follow UML standards and are generated using PlantUML.
+
+##### Appendix C: Machine Learning Model Details {#appendix-c-machine-learning-model-details .unnumbered}
+
+> This appendix provides an overview of the machine learning models
+> trained for ThyroCheck, including:
+
+-   Dataset description and preprocessing steps
+
+-   Feature selection (TSH, T3, T4, smoking status, hypertension status)
+
+-   Model training approach
+
+-   Evaluation metrics (accuracy, precision, recall)
+
+-   Limitations of predictions due to dataset constraints
+
+> The ML models are trained by the project team and integrated into the
+> system for prediction and risk assessment.
+
+##### Appendix D: OCR and Data Extraction Process {#appendix-d-ocr-and-data-extraction-process .unnumbered}
+
+> This appendix documents the OCR workflow used to extract thyroid
+> hormone values from uploaded laboratory reports, including:
+
+-   Image quality validation
+
+-   OCR processing using Tesseract
+
+-   Extraction of relevant hormone values
+
+-   Error handling and re-upload mechanism
+
+##### Appendix E: Tools and Technologies {#appendix-e-tools-and-technologies .unnumbered}
+
+> The following tools and technologies were used in the development of
+> ThyroCheck:
+
+-   React Native (Mobile Application)
+
+-   Firebase Authentication
+
+-   Firebase Firestore
+
+-   Firebase Storage
+
+-   Python (Machine Learning & OCR)
+
+-   Tesseract OCR
+
+-   PlantUML (Diagrams)
+
+-   PDF Generation Libraries
