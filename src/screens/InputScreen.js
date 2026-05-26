@@ -15,7 +15,7 @@ import { globalStyles } from '../styles/globalStyles';
 import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
 import { predictRisk } from '../services/api';
-import { pickImage, takePhoto, extractThyroidValues } from '../services/ocr';
+import { pickImage, takePhoto, pickPdf, extractThyroidValues } from '../services/ocr';
 
 export const InputScreen = ({ navigation }) => {
   const [age, setAge] = useState('');
@@ -31,10 +31,14 @@ export const InputScreen = ({ navigation }) => {
   const handleScan = async (source) => {
     setScanning(true);
     try {
-      const base64 = source === 'camera' ? await takePhoto() : await pickImage();
-      if (!base64) { setScanning(false); return; }
+      let file;
+      if (source === 'camera') file = await takePhoto();
+      else if (source === 'pdf') file = await pickPdf();
+      else file = await pickImage();
 
-      const values = await extractThyroidValues(base64);
+      if (!file) { setScanning(false); return; }
+
+      const values = await extractThyroidValues(file);
 
       if (values.tsh) setTsh(values.tsh);
       if (values.tt3) setTt3(values.tt3);
@@ -151,13 +155,13 @@ export const InputScreen = ({ navigation }) => {
           </Text>
 
           {/* Scan Buttons */}
-          <View style={{ flexDirection: 'row', gap: Sizes.md, marginBottom: Sizes.xl }}>
+          <View style={{ flexDirection: 'row', gap: Sizes.sm, marginBottom: Sizes.xl }}>
             <TouchableOpacity
               onPress={() => handleScan('camera')}
               disabled={scanning}
               style={{
                 flex: 1,
-                padding: Sizes.lg,
+                padding: Sizes.md,
                 borderRadius: Sizes.borderRadius.md,
                 borderWidth: 1.5,
                 borderColor: Colors.primary,
@@ -176,7 +180,7 @@ export const InputScreen = ({ navigation }) => {
                 fontWeight: '600',
                 fontSize: Sizes.fontSize.sm,
               }}>
-                {scanning ? 'Scanning...' : 'Camera'}
+                Camera
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -184,7 +188,7 @@ export const InputScreen = ({ navigation }) => {
               disabled={scanning}
               style={{
                 flex: 1,
-                padding: Sizes.lg,
+                padding: Sizes.md,
                 borderRadius: Sizes.borderRadius.md,
                 borderWidth: 1.5,
                 borderColor: Colors.primary,
@@ -203,7 +207,34 @@ export const InputScreen = ({ navigation }) => {
                 fontWeight: '600',
                 fontSize: Sizes.fontSize.sm,
               }}>
-                {scanning ? 'Scanning...' : 'Gallery'}
+                Gallery
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleScan('pdf')}
+              disabled={scanning}
+              style={{
+                flex: 1,
+                padding: Sizes.md,
+                borderRadius: Sizes.borderRadius.md,
+                borderWidth: 1.5,
+                borderColor: Colors.primary,
+                borderStyle: 'dashed',
+                alignItems: 'center',
+                opacity: scanning ? 0.5 : 1,
+              }}
+            >
+              {scanning ? (
+                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
+              ) : (
+                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📄</Text>
+              )}
+              <Text style={{
+                color: Colors.primary,
+                fontWeight: '600',
+                fontSize: Sizes.fontSize.sm,
+              }}>
+                PDF
               </Text>
             </TouchableOpacity>
           </View>
