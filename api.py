@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from typing import Optional
 import joblib
 import numpy as np
 import pandas as pd
 import easyocr
 import base64
 import re
+import fitz  # PyMuPDF
 from io import BytesIO
 
 # Load saved models and scaler
@@ -86,18 +88,36 @@ def predict(patient: PatientInput):
 
 # --- OCR Endpoint ---
 class OCRInput(BaseModel):
-    image: str  # base64 encoded image
+    image: Optional[str] = None  # base64 encoded image
+    pdf: Optional[str] = None    # base64 encoded PDF
 
-@app.post("/ocr")
-def extract_thyroid_values(data: OCRInput):
-    # Decode base64 image
-    image_bytes = base64.b64decode(data.image)
 
-    # Run EasyOCR
-    results = reader.readtext(image_bytes)
-    full_text = " ".join([r[1] for r in results])
+def extract_text_from_pdf(pdf_bytes: bytes) -> str:
+    """
+    Extract text from a PDF.
+    - If the PDF has selectable text, extract directly (fast path).
+    - Otherwise, render each page as an image and run EasyOCR (fallback).
+    """
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+    full_text_parts = []
 
-    # Parse thyroid values from text
+    for page in doc:
+        page_text = page.get_text().strip()
+        if page_text:
+            full_text_parts.append(page_text)
+        else:
+            # Scanned PDF: render page and run OCR
+            pix = page.get_pixmap(dpi=200)
+            img_bytes = pix.tobytes("png")
+            results = reader.readtext(img_bytes)
+            full_text_parts.append(" ".join([r[1] for r in results]))
+
+    doc.close()
+    return " ".join(full_text_parts)
+
+
+def parse_thyroid_values(text: str) -> dict:
+    """Parse TSH/T3/T4/FT3/FT4 values from extracted text using regex."""
     values = {}
     patterns = [
         ("tsh", r'TSH[^0-9]*(\d+(?:[.,\s]\d+)?)'),
@@ -108,10 +128,28 @@ def extract_thyroid_values(data: OCRInput):
     ]
 
     for key, pattern in patterns:
-        match = re.search(pattern, full_text, re.IGNORECASE)
+        match = re.search(pattern, text, re.IGNORECASE)
         if match:
             value = match.group(1).replace(',', '.').replace(' ', '.')
             values[key] = value
+
+    return values
+
+
+@app.post("/ocr")
+def extract_thyroid_values(data: OCRInput):
+    if not data.image and not data.pdf:
+        raise HTTPException(status_code=400, detail="Either 'image' or 'pdf' must be provided.")
+
+    if data.pdf:
+        pdf_bytes = base64.b64decode(data.pdf)
+        full_text = extract_text_from_pdf(pdf_bytes)
+    else:
+        image_bytes = base64.b64decode(data.image)
+        results = reader.readtext(image_bytes)
+        full_text = " ".join([r[1] for r in results])
+
+    values = parse_thyroid_values(full_text)
 
     return {
         "extracted_text": full_text,
