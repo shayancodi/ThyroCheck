@@ -8,6 +8,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../styles/globalStyles';
@@ -165,7 +166,11 @@ export const InputScreen = ({ navigation }) => {
                 opacity: scanning ? 0.5 : 1,
               }}
             >
-              <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📷</Text>
+              {scanning ? (
+                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
+              ) : (
+                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📷</Text>
+              )}
               <Text style={{
                 color: Colors.primary,
                 fontWeight: '600',
@@ -188,7 +193,11 @@ export const InputScreen = ({ navigation }) => {
                 opacity: scanning ? 0.5 : 1,
               }}
             >
-              <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>🖼️</Text>
+              {scanning ? (
+                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
+              ) : (
+                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>🖼️</Text>
+              )}
               <Text style={{
                 color: Colors.primary,
                 fontWeight: '600',
@@ -268,6 +277,7 @@ export const InputScreen = ({ navigation }) => {
               title={loading ? "Analyzing..." : "Get Risk Assessment"}
               onPress={handlePredict}
               loading={loading}
+              disabled={scanning}
               style={{
                 backgroundColor: Colors.primary,
                 paddingVertical: Sizes.lg,
