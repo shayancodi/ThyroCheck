@@ -78,7 +78,7 @@ export const InputScreen = ({ navigation }) => {
     setLoading(true);
     try {
       const result = await predictRisk(patientData);
-      navigation.navigate('Report', { results: result });
+      navigation.navigate('Report', { results: result, patientData });
     } catch (error) {
       Alert.alert('Error', 'Failed to get prediction. Please try again.');
     } finally {

@@ -1,14 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
   Animated,
+  Alert,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import * as FileSystem from 'expo-file-system/legacy';
+import * as Sharing from 'expo-sharing';
 import { globalStyles } from '../styles/globalStyles';
 import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
+import { generatePdfReport } from '../services/api';
+import { auth } from '../services/firebase';
 
 /**
  * Report Screen - Shows real API prediction results
@@ -18,6 +23,8 @@ export const ReportScreen = ({ navigation, route }) => {
   const slideAnim = useRef(new Animated.Value(30)).current;
 
   const results = route.params?.results;
+  const patientData = route.params?.patientData;
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     Animated.parallel([
@@ -46,6 +53,54 @@ export const ReportScreen = ({ navigation, route }) => {
         return Colors.low;
       default:
         return Colors.textSecondary;
+    }
+  };
+
+  const handleDownloadPdf = async () => {
+    if (!patientData || !results) {
+      Alert.alert('Error', 'Missing data to generate PDF.');
+      return;
+    }
+    setDownloading(true);
+    try {
+      const user = auth.currentUser;
+      const reportData = {
+        name: user?.displayName || user?.email?.split('@')[0] || 'User',
+        age: patientData.age,
+        gender: patientData.gender,
+        TSH: patientData.TSH,
+        FT3: patientData.FT3 ?? null,
+        FT4: patientData.FT4 ?? null,
+        TT3: patientData.TT3,
+        TT4: patientData.TT4,
+        hf_risk_percent: results.heart_failure.risk_percent,
+        hf_risk_level: results.heart_failure.risk_level,
+        chd_risk_percent: results.coronary_heart_disease.risk_percent,
+        chd_risk_level: results.coronary_heart_disease.risk_level,
+      };
+
+      const { pdf_base64, filename } = await generatePdfReport(reportData);
+
+      const fileUri = FileSystem.documentDirectory + filename;
+      await FileSystem.writeAsStringAsync(fileUri, pdf_base64, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (canShare) {
+        await Sharing.shareAsync(fileUri, {
+          mimeType: 'application/pdf',
+          dialogTitle: 'Save or Share Your ThyroCheck Report',
+          UTI: 'com.adobe.pdf',
+        });
+      } else {
+        Alert.alert('Saved', `PDF saved to: ${fileUri}`);
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Download Failed', error.message || 'Could not generate PDF report.');
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -267,16 +322,38 @@ const chdLevel = results.coronary_heart_disease.risk_level;
             </Text>
           </View>
 
-          {/* Back Button */}
+          {/* Download PDF Button */}
           <Button
-            title="New Assessment"
-            onPress={() => navigation.navigate('Input')}
+            title={downloading ? 'Generating PDF...' : '📄 Download PDF Report'}
+            onPress={handleDownloadPdf}
+            loading={downloading}
+            disabled={downloading}
             style={{
               backgroundColor: Colors.primary,
               paddingVertical: Sizes.lg,
               borderRadius: 12,
+              marginBottom: Sizes.md,
             }}
             textStyle={{
+              fontSize: Sizes.fontSize.md,
+              fontWeight: '500',
+              letterSpacing: 0.3,
+            }}
+          />
+
+          {/* New Assessment Button (Secondary) */}
+          <Button
+            title="New Assessment"
+            onPress={() => navigation.navigate('Input')}
+            style={{
+              backgroundColor: 'transparent',
+              paddingVertical: Sizes.lg,
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: Colors.primary,
+            }}
+            textStyle={{
+              color: Colors.primary,
               fontSize: Sizes.fontSize.md,
               fontWeight: '500',
               letterSpacing: 0.3,
