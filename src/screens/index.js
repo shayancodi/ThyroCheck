@@ -10,3 +10,4 @@ export { LandingScreen } from './LandingScreen';
 export { ReportScreen } from './ReportScreen';
 export { ProfileScreen } from './ProfileScreen';
 export { InputScreen } from './InputScreen';
+export { HistoryScreen } from './HistoryScreen';

@@ -14,6 +14,7 @@ import { Button, AnimatedBackground } from '../components';
 import { Colors, Sizes } from '../constants';
 import { generatePdfReport } from '../services/api';
 import { auth } from '../services/firebase';
+import { saveHistory } from '../services/history';
 
 /**
  * Report Screen - Shows real API prediction results
@@ -39,6 +40,12 @@ export const ReportScreen = ({ navigation, route }) => {
         useNativeDriver: true,
       }),
     ]).start();
+
+    if (results && patientData) {
+      saveHistory(patientData, results).catch((err) =>
+        console.warn('Failed to save history:', err)
+      );
+    }
   }, []);
 
   const date = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });

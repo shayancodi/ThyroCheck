@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LandingScreen, ReportScreen, ProfileScreen, InputScreen } from '../screens';
+import { LandingScreen, ReportScreen, ProfileScreen, InputScreen, HistoryScreen } from '../screens';
 import { Colors, Sizes } from '../constants';
-import { HomeIcon, ReportIcon, ProfileIcon } from '../components/TabIcons';
+import { HomeIcon, ReportIcon, ProfileIcon, HistoryIcon } from '../components/TabIcons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +66,16 @@ const MainTabs = () => {
           tabBarLabel: 'Report',
           tabBarIcon: ({ focused, color }) => (
             <ReportIcon focused={focused} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          tabBarLabel: 'History',
+          tabBarIcon: ({ focused, color }) => (
+            <HistoryIcon focused={focused} color={color} />
           ),
         }}
       />

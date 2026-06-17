@@ -1,0 +1,496 @@
+FAIL __tests__/services/report.test.js
+  ● Test suite failed to run
+
+    Cannot find module 'babel-preset-expo'
+    Require stack:
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/babel-jest/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-util/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-worker/build/processChild.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/lib/config/files/plugins.js:128:11)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/lib/config/files/plugins.js:162:19)
+      at resolveStandardizedName (node_modules/@babel/core/lib/config/files/plugins.js:183:12)
+      at loadPreset (node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+          at loadPreset.next (<anonymous>)
+      at createDescriptor (node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at gensync.sync (node_modules/gensync/index.js:31:22)
+      at gensync.all (node_modules/gensync/index.js:210:24)
+      at createDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+          at createDescriptors.next (<anonymous>)
+      at createPresetDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at node_modules/@babel/core/lib/gensync-utils/functional.js:22:27
+      at mergeChainOpts (node_modules/@babel/core/lib/config/config-chain.js:350:34)
+          at mergeChainOpts.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:316:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/lib/config/config-chain.js:191:24)
+          at loadFileChain.next (<anonymous>)
+      at mergeExtendsChain (node_modules/@babel/core/lib/config/config-chain.js:328:28)
+          at mergeExtendsChain.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:312:20)
+          at chainWalker.next (<anonymous>)
+      at buildRootChain (node_modules/@babel/core/lib/config/config-chain.js:56:36)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/lib/config/partial.js:72:62)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPartialConfig (node_modules/@babel/core/lib/config/partial.js:115:25)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at stopHiding - secret - don't use this - v1 (node_modules/@babel/core/lib/errors/rewrite-stack-trace.js:47:12)
+      at loadPartialConfigSync (node_modules/@babel/core/lib/config/index.js:37:84)
+      at Module._compile (node_modules/pirates/lib/index.js:124:29)
+      at Object.newLoader (node_modules/pirates/lib/index.js:134:7)
+
+FAIL __tests__/services/predict.test.js
+  ● Test suite failed to run
+
+    Cannot find module 'babel-preset-expo'
+    Require stack:
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/babel-jest/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-util/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-worker/build/processChild.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/lib/config/files/plugins.js:128:11)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/lib/config/files/plugins.js:162:19)
+      at resolveStandardizedName (node_modules/@babel/core/lib/config/files/plugins.js:183:12)
+      at loadPreset (node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+          at loadPreset.next (<anonymous>)
+      at createDescriptor (node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at gensync.sync (node_modules/gensync/index.js:31:22)
+      at gensync.all (node_modules/gensync/index.js:210:24)
+      at createDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+          at createDescriptors.next (<anonymous>)
+      at createPresetDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at node_modules/@babel/core/lib/gensync-utils/functional.js:22:27
+      at mergeChainOpts (node_modules/@babel/core/lib/config/config-chain.js:350:34)
+          at mergeChainOpts.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:316:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/lib/config/config-chain.js:191:24)
+          at loadFileChain.next (<anonymous>)
+      at mergeExtendsChain (node_modules/@babel/core/lib/config/config-chain.js:328:28)
+          at mergeExtendsChain.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:312:20)
+          at chainWalker.next (<anonymous>)
+      at buildRootChain (node_modules/@babel/core/lib/config/config-chain.js:56:36)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/lib/config/partial.js:72:62)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPartialConfig (node_modules/@babel/core/lib/config/partial.js:115:25)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at stopHiding - secret - don't use this - v1 (node_modules/@babel/core/lib/errors/rewrite-stack-trace.js:47:12)
+      at loadPartialConfigSync (node_modules/@babel/core/lib/config/index.js:37:84)
+      at Module._compile (node_modules/pirates/lib/index.js:124:29)
+      at Object.newLoader (node_modules/pirates/lib/index.js:134:7)
+
+FAIL __tests__/services/ocr.test.js
+  ● Test suite failed to run
+
+    Cannot find module 'babel-preset-expo'
+    Require stack:
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/babel-jest/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-util/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-worker/build/processChild.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/lib/config/files/plugins.js:128:11)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/lib/config/files/plugins.js:162:19)
+      at resolveStandardizedName (node_modules/@babel/core/lib/config/files/plugins.js:183:12)
+      at loadPreset (node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+          at loadPreset.next (<anonymous>)
+      at createDescriptor (node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at gensync.sync (node_modules/gensync/index.js:31:22)
+      at gensync.all (node_modules/gensync/index.js:210:24)
+      at createDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+          at createDescriptors.next (<anonymous>)
+      at createPresetDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at node_modules/@babel/core/lib/gensync-utils/functional.js:22:27
+      at mergeChainOpts (node_modules/@babel/core/lib/config/config-chain.js:350:34)
+          at mergeChainOpts.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:316:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/lib/config/config-chain.js:191:24)
+          at loadFileChain.next (<anonymous>)
+      at mergeExtendsChain (node_modules/@babel/core/lib/config/config-chain.js:328:28)
+          at mergeExtendsChain.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:312:20)
+          at chainWalker.next (<anonymous>)
+      at buildRootChain (node_modules/@babel/core/lib/config/config-chain.js:56:36)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/lib/config/partial.js:72:62)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPartialConfig (node_modules/@babel/core/lib/config/partial.js:115:25)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at stopHiding - secret - don't use this - v1 (node_modules/@babel/core/lib/errors/rewrite-stack-trace.js:47:12)
+      at loadPartialConfigSync (node_modules/@babel/core/lib/config/index.js:37:84)
+      at Module._compile (node_modules/pirates/lib/index.js:124:29)
+      at Object.newLoader (node_modules/pirates/lib/index.js:134:7)
+
+FAIL __tests__/services/auth.test.js
+  ● Test suite failed to run
+
+    Cannot find module 'babel-preset-expo'
+    Require stack:
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/babel-jest/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-util/build/index.js
+    - /mnt/4618CB0B18CAF8C7/FYP/node_modules/jest-runner/node_modules/jest-worker/build/processChild.js
+
+    Make sure that all the Babel plugins and presets you are using
+    are defined as dependencies or devDependencies in your package.json
+    file. It's possible that the missing plugin is loaded by a preset
+    you are using that forgot to add the plugin to its dependencies: you
+    can workaround this problem by explicitly adding the missing package
+    to your top-level package.json.
+
+      at tryRequireResolve (node_modules/@babel/core/lib/config/files/plugins.js:128:11)
+      at resolveStandardizedNameForRequire (node_modules/@babel/core/lib/config/files/plugins.js:162:19)
+      at resolveStandardizedName (node_modules/@babel/core/lib/config/files/plugins.js:183:12)
+      at loadPreset (node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+          at loadPreset.next (<anonymous>)
+      at createDescriptor (node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+          at createDescriptor.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at node_modules/gensync/index.js:31:34
+          at Array.map (<anonymous>)
+      at gensync.sync (node_modules/gensync/index.js:31:22)
+      at gensync.all (node_modules/gensync/index.js:210:24)
+      at createDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+          at createDescriptors.next (<anonymous>)
+      at createPresetDescriptors (node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+          at createPresetDescriptors.next (<anonymous>)
+      at node_modules/@babel/core/lib/gensync-utils/functional.js:22:27
+      at mergeChainOpts (node_modules/@babel/core/lib/config/config-chain.js:350:34)
+          at mergeChainOpts.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:316:14)
+          at chainWalker.next (<anonymous>)
+      at loadFileChain (node_modules/@babel/core/lib/config/config-chain.js:191:24)
+          at loadFileChain.next (<anonymous>)
+      at mergeExtendsChain (node_modules/@babel/core/lib/config/config-chain.js:328:28)
+          at mergeExtendsChain.next (<anonymous>)
+      at chainWalker (node_modules/@babel/core/lib/config/config-chain.js:312:20)
+          at chainWalker.next (<anonymous>)
+      at buildRootChain (node_modules/@babel/core/lib/config/config-chain.js:56:36)
+          at buildRootChain.next (<anonymous>)
+      at loadPrivatePartialConfig (node_modules/@babel/core/lib/config/partial.js:72:62)
+          at loadPrivatePartialConfig.next (<anonymous>)
+      at loadPartialConfig (node_modules/@babel/core/lib/config/partial.js:115:25)
+          at loadPartialConfig.next (<anonymous>)
+      at evaluateSync (node_modules/gensync/index.js:251:28)
+      at sync (node_modules/gensync/index.js:89:14)
+      at stopHiding - secret - don't use this - v1 (node_modules/@babel/core/lib/errors/rewrite-stack-trace.js:47:12)
+      at loadPartialConfigSync (node_modules/@babel/core/lib/config/index.js:37:84)
+      at Module._compile (node_modules/pirates/lib/index.js:124:29)
+      at Object.newLoader (node_modules/pirates/lib/index.js:134:7)
+
+Failed to collect coverage from /mnt/4618CB0B18CAF8C7/FYP/src/services/api.js
+ERROR: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+    at __node_internal_ (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:291:5)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at gensync.async (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:43:15)
+    at gensync.all (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at mergeExtendsChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:328:28)
+    at mergeExtendsChain.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:312:20)
+    at chainWalker.next (<anonymous>)
+    at buildRootChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:56:36)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:269:25)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:223:11)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Failed to collect coverage from /mnt/4618CB0B18CAF8C7/FYP/src/services/index.js
+ERROR: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+    at __node_internal_ (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:291:5)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at gensync.async (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:43:15)
+    at gensync.all (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at mergeExtendsChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:328:28)
+    at mergeExtendsChain.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:312:20)
+    at chainWalker.next (<anonymous>)
+    at buildRootChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:56:36)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:269:25)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:223:11)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Failed to collect coverage from /mnt/4618CB0B18CAF8C7/FYP/src/services/history.js
+ERROR: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+    at __node_internal_ (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:291:5)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at gensync.async (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:43:15)
+    at gensync.all (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at mergeExtendsChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:328:28)
+    at mergeExtendsChain.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:312:20)
+    at chainWalker.next (<anonymous>)
+    at buildRootChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:56:36)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:269:25)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:223:11)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Failed to collect coverage from /mnt/4618CB0B18CAF8C7/FYP/src/services/ocr.js
+ERROR: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+    at __node_internal_ (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:291:5)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at gensync.async (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:43:15)
+    at gensync.all (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at mergeExtendsChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:328:28)
+    at mergeExtendsChain.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:312:20)
+    at chainWalker.next (<anonymous>)
+    at buildRootChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:56:36)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:269:25)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:223:11)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Failed to collect coverage from /mnt/4618CB0B18CAF8C7/FYP/src/services/firebase.js
+ERROR: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+STACK: Error: Cannot find package 'babel-preset-expo' imported from /mnt/4618CB0B18CAF8C7/FYP/babel-virtual-resolve-base.js
+    at __node_internal_ (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:224:9)
+    at new NodeError (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:194:5)
+    at packageResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:898:9)
+    at moduleResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:938:18)
+    at defaultResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1016:15)
+    at resolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/vendor/import-meta-resolve.js:1029:12)
+    at tryImportMetaResolve (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:149:45)
+    at resolveStandardizedNameForImport (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:174:19)
+    at resolveStandardizedName (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:186:22)
+    at loadPreset (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/files/plugins.js:68:7)
+    at loadPreset.next (<anonymous>)
+    at createDescriptor (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:261:32)
+    at evaluateAsync (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:291:5)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:44:11
+    at Array.forEach (<anonymous>)
+    at gensync.async (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:43:15)
+    at gensync.all (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:216:13)
+    at Generator.next (<anonymous>)
+    at createDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPresetDescriptors (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-descriptors.js:96:17)
+    at createPresetDescriptors.next (<anonymous>)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/gensync-utils/functional.js:39:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:350:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at loadFileChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:191:24)
+    at loadFileChain.next (<anonymous>)
+    at mergeExtendsChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:328:28)
+    at mergeExtendsChain.next (<anonymous>)
+    at chainWalker (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:312:20)
+    at chainWalker.next (<anonymous>)
+    at buildRootChain (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/config-chain.js:56:36)
+    at buildRootChain.next (<anonymous>)
+    at loadPrivatePartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:72:62)
+    at loadPrivatePartialConfig.next (<anonymous>)
+    at loadPartialConfig (/mnt/4618CB0B18CAF8C7/FYP/node_modules/@babel/core/lib/config/partial.js:115:25)
+    at loadPartialConfig.next (<anonymous>)
+    at step (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:269:25)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:223:11)
+    at /mnt/4618CB0B18CAF8C7/FYP/node_modules/gensync/index.js:37:40
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 4 failed, 4 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.685 s
+Ran all test suites.
