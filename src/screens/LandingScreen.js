@@ -94,7 +94,7 @@ export const LandingScreen = ({ navigation }) => {
                 lineHeight: 32,
               }}
             >
-              Hyper Tension & Disease Risk Predictor
+              ThyroCheck - Your AI-Powered Health Assistant
             </Text>
 
             <Text
@@ -106,7 +106,7 @@ export const LandingScreen = ({ navigation }) => {
                 paddingHorizontal: Sizes.lg,
               }}
             >
-              Advanced AI-powered health analysis for comprehensive risk assessment across cardiovascular, metabolic, and thyroid health
+              Advanced AI-powered health analysis for comprehensive risk assessment across cardiovascular risk.
             </Text>
           </View>
 
@@ -173,111 +173,27 @@ export const LandingScreen = ({ navigation }) => {
                 letterSpacing: -0.3,
               }}
             >
-              Analysis Categories
+              What We Analyze
             </Text>
-
-            <View style={{ gap: Sizes.lg }}>
-              <View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: Sizes.xs }}>
-                  <View
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 3,
-                      backgroundColor: Colors.accent,
-                      marginRight: Sizes.md,
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: Sizes.fontSize.md,
-                      fontWeight: '600',
-                      color: Colors.text,
-                      letterSpacing: -0.2,
-                    }}
-                  >
-                    Cardiovascular Health
-                  </Text>
-                </View>
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.sm,
-                    color: Colors.textSecondary,
-                    lineHeight: 20,
-                    paddingLeft: Sizes.lg,
-                  }}
-                >
-                  Comprehensive assessment of heart disease risk, hypertension indicators, and cardiovascular conditions through advanced pattern recognition and biomarker analysis.
-                </Text>
-              </View>
-
-              <View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: Sizes.xs }}>
-                  <View
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 3,
-                      backgroundColor: Colors.accent,
-                      marginRight: Sizes.md,
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: Sizes.fontSize.md,
-                      fontWeight: '600',
-                      color: Colors.text,
-                      letterSpacing: -0.2,
-                    }}
-                  >
-                    Metabolic Disorders
-                  </Text>
-                </View>
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.sm,
-                    color: Colors.textSecondary,
-                    lineHeight: 20,
-                    paddingLeft: Sizes.lg,
-                  }}
-                >
-                  Evaluation of metabolic markers including diabetes risk factors, cholesterol levels, insulin resistance, and metabolic syndrome indicators for early detection and prevention.
-                </Text>
-              </View>
-
-              <View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: Sizes.xs }}>
-                  <View
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 3,
-                      backgroundColor: Colors.accent,
-                      marginRight: Sizes.md,
-                    }}
-                  />
-                  <Text
-                    style={{
-                      fontSize: Sizes.fontSize.md,
-                      fontWeight: '600',
-                      color: Colors.text,
-                      letterSpacing: -0.2,
-                    }}
-                  >
-                    Thyroid Function
-                  </Text>
-                </View>
-                <Text
-                  style={{
-                    fontSize: Sizes.fontSize.sm,
-                    color: Colors.textSecondary,
-                    lineHeight: 20,
-                    paddingLeft: Sizes.lg,
-                  }}
-                >
-                  Detailed monitoring of thyroid health, detection of abnormalities in hormone levels, and comprehensive risk assessment for thyroid-related diseases and conditions.
-                </Text>
-              </View>
+            <View style={{ gap: Sizes.md }}>
+              <Text
+                style={{
+                  fontSize: Sizes.fontSize.sm,
+                  color: Colors.textSecondary,
+                  lineHeight: 22,
+                }}
+              >
+                Heart Failure Risk — estimated from your thyroid panel using our AI prediction model.
+              </Text>
+              <Text
+                style={{
+                  fontSize: Sizes.fontSize.sm,
+                  color: Colors.textSecondary,
+                  lineHeight: 22,
+                }}
+              >
+                Coronary Heart Disease Risk — assessed alongside key thyroid indicators for a complete cardiovascular picture.
+              </Text>
             </View>
           </View>
 
