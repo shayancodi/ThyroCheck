@@ -18,6 +18,42 @@ import { Colors, Sizes } from '../constants';
 import { predictRisk } from '../services/api';
 import { pickImage, takePhoto, pickPdf, extractThyroidValues } from '../services/ocr';
 
+/**
+ * Defined at module scope (not inside InputScreen) so its component identity
+ * stays stable across re-renders. Defining it inline would remount the
+ * TextInput on every keystroke and dismiss the keyboard.
+ */
+const InputField = ({ label, value, onChangeText, placeholder, required }) => (
+  <View style={{ marginBottom: Sizes.md }}>
+    <Text style={{
+      fontSize: Sizes.fontSize.xs,
+      color: Colors.textSecondary,
+      marginBottom: Sizes.xs,
+      fontWeight: '500',
+      letterSpacing: 0.5,
+      textTransform: 'uppercase',
+    }}>
+      {label} {required ? '' : '(Optional)'}
+    </Text>
+    <TextInput
+      style={{
+        backgroundColor: Colors.surface,
+        borderRadius: Sizes.borderRadius.md,
+        padding: Sizes.lg,
+        fontSize: Sizes.fontSize.md,
+        borderWidth: 1,
+        borderColor: Colors.border,
+        color: Colors.text,
+      }}
+      placeholder={placeholder}
+      placeholderTextColor={Colors.textTertiary}
+      value={value}
+      onChangeText={onChangeText}
+      keyboardType="numeric"
+    />
+  </View>
+);
+
 export const InputScreen = ({ navigation }) => {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
@@ -89,37 +125,6 @@ export const InputScreen = ({ navigation }) => {
       setLoading(false);
     }
   };
-
-  const InputField = ({ label, value, onChangeText, placeholder, required }) => (
-    <View style={{ marginBottom: Sizes.md }}>
-      <Text style={{
-        fontSize: Sizes.fontSize.xs,
-        color: Colors.textSecondary,
-        marginBottom: Sizes.xs,
-        fontWeight: '500',
-        letterSpacing: 0.5,
-        textTransform: 'uppercase',
-      }}>
-        {label} {required ? '' : '(Optional)'}
-      </Text>
-      <TextInput
-        style={{
-          backgroundColor: Colors.surface,
-          borderRadius: Sizes.borderRadius.md,
-          padding: Sizes.lg,
-          fontSize: Sizes.fontSize.md,
-          borderWidth: 1,
-          borderColor: Colors.border,
-          color: Colors.text,
-        }}
-        placeholder={placeholder}
-        placeholderTextColor={Colors.textTertiary}
-        value={value}
-        onChangeText={onChangeText}
-        keyboardType="numeric"
-      />
-    </View>
-  );
 
   return (
     <View style={[globalStyles.container, { backgroundColor: Colors.background }]}>
