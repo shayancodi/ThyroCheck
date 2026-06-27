@@ -10,7 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import { globalStyles } from '../styles/globalStyles';
-import { Button, AnimatedBackground } from '../components';
+import { Button, AnimatedBackground, BackHeader } from '../components';
 import { Colors, Sizes } from '../constants';
 import { generatePdfReport } from '../services/api';
 import { auth } from '../services/firebase';
@@ -166,10 +166,12 @@ const chdLevel = results.coronary_heart_disease.risk_level;
       <StatusBar style="dark" />
       <AnimatedBackground />
 
+      {navigation.canGoBack() && <BackHeader navigation={navigation} title="Home" />}
+
       <ScrollView
         contentContainerStyle={{
           paddingHorizontal: Sizes.xl,
-          paddingTop: Sizes.xxl,
+          paddingTop: navigation.canGoBack() ? Sizes.md : Sizes.xxl,
           paddingBottom: Sizes.xxl,
         }}
         showsVerticalScrollIndicator={false}

@@ -9,10 +9,11 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  Modal,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../styles/globalStyles';
-import { Button, AnimatedBackground } from '../components';
+import { Button, AnimatedBackground, BackHeader, CameraScanIcon, GalleryScanIcon, PdfScanIcon } from '../components';
 import { Colors, Sizes } from '../constants';
 import { predictRisk } from '../services/api';
 import { pickImage, takePhoto, pickPdf, extractThyroidValues } from '../services/ocr';
@@ -27,6 +28,7 @@ export const InputScreen = ({ navigation }) => {
   const [ft4, setFt4] = useState('');
   const [loading, setLoading] = useState(false);
   const [scanning, setScanning] = useState(false);
+  const [processing, setProcessing] = useState(false);
 
   const handleScan = async (source) => {
     setScanning(true);
@@ -38,6 +40,7 @@ export const InputScreen = ({ navigation }) => {
 
       if (!file) { setScanning(false); return; }
 
+      setProcessing(true);
       const values = await extractThyroidValues(file);
 
       if (values.tsh) setTsh(values.tsh);
@@ -56,6 +59,7 @@ export const InputScreen = ({ navigation }) => {
       Alert.alert('Scan Failed', error.message || 'Something went wrong. Try again.');
     } finally {
       setScanning(false);
+      setProcessing(false);
     }
   };
 
@@ -122,6 +126,8 @@ export const InputScreen = ({ navigation }) => {
       <StatusBar style="dark" />
       <AnimatedBackground />
 
+      <BackHeader navigation={navigation} title="Home" />
+
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -129,7 +135,7 @@ export const InputScreen = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={{
             paddingHorizontal: Sizes.xl,
-            paddingTop: Sizes.xxl,
+            paddingTop: Sizes.md,
             paddingBottom: Sizes.xxl,
           }}
           showsVerticalScrollIndicator={false}
@@ -155,88 +161,48 @@ export const InputScreen = ({ navigation }) => {
           </Text>
 
           {/* Scan Buttons */}
-          <View style={{ flexDirection: 'row', gap: Sizes.sm, marginBottom: Sizes.xl }}>
-            <TouchableOpacity
-              onPress={() => handleScan('camera')}
-              disabled={scanning}
-              style={{
-                flex: 1,
-                padding: Sizes.md,
-                borderRadius: Sizes.borderRadius.md,
-                borderWidth: 1.5,
-                borderColor: Colors.primary,
-                borderStyle: 'dashed',
-                alignItems: 'center',
-                opacity: scanning ? 0.5 : 1,
-              }}
-            >
-              {scanning ? (
-                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
-              ) : (
-                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📷</Text>
-              )}
-              <Text style={{
-                color: Colors.primary,
-                fontWeight: '600',
-                fontSize: Sizes.fontSize.sm,
-              }}>
-                Camera
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => handleScan('gallery')}
-              disabled={scanning}
-              style={{
-                flex: 1,
-                padding: Sizes.md,
-                borderRadius: Sizes.borderRadius.md,
-                borderWidth: 1.5,
-                borderColor: Colors.primary,
-                borderStyle: 'dashed',
-                alignItems: 'center',
-                opacity: scanning ? 0.5 : 1,
-              }}
-            >
-              {scanning ? (
-                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
-              ) : (
-                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>🖼️</Text>
-              )}
-              <Text style={{
-                color: Colors.primary,
-                fontWeight: '600',
-                fontSize: Sizes.fontSize.sm,
-              }}>
-                Gallery
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => handleScan('pdf')}
-              disabled={scanning}
-              style={{
-                flex: 1,
-                padding: Sizes.md,
-                borderRadius: Sizes.borderRadius.md,
-                borderWidth: 1.5,
-                borderColor: Colors.primary,
-                borderStyle: 'dashed',
-                alignItems: 'center',
-                opacity: scanning ? 0.5 : 1,
-              }}
-            >
-              {scanning ? (
-                <ActivityIndicator size="small" color={Colors.primary} style={{ marginBottom: Sizes.xs }} />
-              ) : (
-                <Text style={{ fontSize: 24, marginBottom: Sizes.xs }}>📄</Text>
-              )}
-              <Text style={{
-                color: Colors.primary,
-                fontWeight: '600',
-                fontSize: Sizes.fontSize.sm,
-              }}>
-                PDF
-              </Text>
-            </TouchableOpacity>
+          <View style={{ flexDirection: 'row', gap: Sizes.md, marginBottom: Sizes.xl }}>
+            {[
+              { key: 'camera', label: 'Camera', Icon: CameraScanIcon },
+              { key: 'gallery', label: 'Gallery', Icon: GalleryScanIcon },
+              { key: 'pdf', label: 'PDF', Icon: PdfScanIcon },
+            ].map(({ key, label, Icon }) => (
+              <TouchableOpacity
+                key={key}
+                onPress={() => handleScan(key)}
+                disabled={scanning}
+                activeOpacity={0.7}
+                style={{
+                  flex: 1,
+                  paddingVertical: Sizes.lg,
+                  paddingHorizontal: Sizes.xs,
+                  borderRadius: Sizes.borderRadius.lg,
+                  borderWidth: 1.5,
+                  borderColor: Colors.primary,
+                  borderStyle: 'dashed',
+                  backgroundColor: Colors.surface,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  opacity: scanning ? 0.5 : 1,
+                }}
+              >
+                <View style={{ height: 28, justifyContent: 'center', marginBottom: Sizes.sm }}>
+                  {scanning ? (
+                    <ActivityIndicator size="small" color={Colors.primary} />
+                  ) : (
+                    <Icon color={Colors.primary} bg={Colors.surface} />
+                  )}
+                </View>
+                <Text style={{
+                  color: Colors.primary,
+                  fontWeight: '600',
+                  fontSize: Sizes.fontSize.sm,
+                  letterSpacing: 0.2,
+                }}>
+                  {label}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
 
           <InputField label="Age" value={age} onChangeText={setAge} placeholder="e.g. 45" required />
@@ -323,6 +289,55 @@ export const InputScreen = ({ navigation }) => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <Modal visible={processing} transparent animationType="fade" statusBarTranslucent>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(26, 31, 54, 0.55)',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: Sizes.xl,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: Colors.surface,
+              borderRadius: 20,
+              paddingVertical: Sizes.xl,
+              paddingHorizontal: Sizes.xl,
+              alignItems: 'center',
+              width: '80%',
+              maxWidth: 320,
+            }}
+          >
+            <ActivityIndicator size="large" color={Colors.primary} />
+            <Text
+              style={{
+                marginTop: Sizes.lg,
+                fontSize: Sizes.fontSize.md,
+                fontWeight: '600',
+                color: Colors.text,
+                textAlign: 'center',
+                letterSpacing: -0.2,
+              }}
+            >
+              Reading your report
+            </Text>
+            <Text
+              style={{
+                marginTop: Sizes.xs,
+                fontSize: Sizes.fontSize.sm,
+                color: Colors.textSecondary,
+                textAlign: 'center',
+                lineHeight: 20,
+              }}
+            >
+              Extracting thyroid values. This may take a few seconds.
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
