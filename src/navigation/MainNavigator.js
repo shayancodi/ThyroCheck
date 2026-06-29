@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LandingScreen, ReportScreen, ProfileScreen, InputScreen, HistoryScreen } from '../screens';
 import { Colors, Sizes } from '../constants';
 import { HomeIcon, ReportIcon, ProfileIcon, HistoryIcon } from '../components/TabIcons';
@@ -8,11 +9,17 @@ import { HomeIcon, ReportIcon, ProfileIcon, HistoryIcon } from '../components/Ta
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const TAB_CONTENT_HEIGHT = 56;
+
 /**
  * Main Tab Navigator
  * Minimal luxury tab bar design
  */
 const MainTabs = () => {
+  const insets = useSafeAreaInsets();
+  const tabBarPaddingBottom = Math.max(insets.bottom, Sizes.sm) + Sizes.sm;
+  const tabBarHeight = TAB_CONTENT_HEIGHT + Sizes.md + tabBarPaddingBottom;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -20,9 +27,9 @@ const MainTabs = () => {
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textTertiary,
         tabBarStyle: {
-          paddingBottom: Sizes.md + 4,
+          paddingBottom: tabBarPaddingBottom,
           paddingTop: Sizes.md,
-          height: 72,
+          height: tabBarHeight,
           backgroundColor: Colors.surface,
           borderTopWidth: 1,
           borderTopColor: Colors.border,

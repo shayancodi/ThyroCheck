@@ -63,7 +63,8 @@ export const ProfileScreen = ({ navigation }) => {
 
   const formatDate = (timestamp) => {
     if (!timestamp) return 'N/A';
-    const date = new Date(Number(timestamp));
+    const date = new Date(timestamp);
+    if (Number.isNaN(date.getTime())) return 'N/A';
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',

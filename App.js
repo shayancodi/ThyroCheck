@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation';
 
 /**
@@ -6,5 +7,9 @@ import { AppNavigator } from './src/navigation';
  * ThyroCheck - Professional Expo Go App
  */
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <SafeAreaProvider>
+      <AppNavigator />
+    </SafeAreaProvider>
+  );
 }
