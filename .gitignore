@@ -29,3 +29,10 @@ Thumbs.db
 node_modules/
 .expo/
 ThyroCheckDataSet/.~lock.*
+*.jks
+*.keystore
+*.pem
+pepk.jar
+*.p12
+google-services.json
+.env
